@@ -100,29 +100,45 @@ export default function CatalogPage() {
         path="/catalogo"
       />
 
-      <div className="container-brand py-14 sm:py-20">
-        <header className="max-w-2xl">
-          <p className="eyebrow text-gold-700">Catálogo</p>
-          <h1 className="mt-3 font-display text-4xl text-ink-950 sm:text-5xl">Peças disponíveis</h1>
-          <p className="mt-4 text-base leading-relaxed text-ink-500">
+      <div className="container-brand py-8 sm:py-10">
+        <nav aria-label="Trilha de navegação" className="text-xs text-ink-500">
+          <ol className="flex list-none flex-wrap items-center gap-2">
+            <li>
+              <a href="/" className="hover:text-ink-950">
+                Início
+              </a>
+            </li>
+            <li aria-hidden="true">›</li>
+            <li className="text-ink-950" aria-current="page">
+              Relógios
+            </li>
+          </ol>
+        </nav>
+
+        <header className="mt-4 max-w-2xl">
+          <h1 className="text-2xl text-ink-950 sm:text-3xl">Relógios</h1>
+          <p className="mt-2 text-sm leading-relaxed text-ink-500">
             O que está em mãos e o que dá pra trazer sob encomenda. Não achou o seu modelo? A gente importa.
           </p>
         </header>
 
-        <div className="mt-10">
-          <CatalogFilters
-            values={values}
-            onChange={handleChange}
-            onClear={handleClear}
-            hasActiveFilters={hasActiveFilters}
-            resultCount={resultCount}
-          />
-        </div>
+        {/* Filtros na lateral no desktop, empilhados no celular — o padrão de
+            listagem de e-commerce, que deixa a grade ocupar a largura útil. */}
+        <div className="mt-8 grid gap-8 lg:grid-cols-[16rem_1fr] lg:gap-10">
+          <aside className="lg:sticky lg:top-24 lg:self-start">
+            <CatalogFilters
+              values={values}
+              onChange={handleChange}
+              onClear={handleClear}
+              hasActiveFilters={hasActiveFilters}
+              resultCount={resultCount}
+            />
+          </aside>
 
-        <div className="mt-10">
+          <div>
           {state.status === 'loading' && (
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 sm:gap-5">
-              {[0, 1, 2, 3, 4, 5].map((index) => (
+            <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
+              {[0, 1, 2, 3, 4, 5, 6, 7].map((index) => (
                 <CardSkeleton key={index} />
               ))}
             </div>
@@ -171,7 +187,7 @@ export default function CatalogPage() {
           )}
 
           {state.status === 'success' && state.data.length > 0 && (
-            <ul className="grid list-none grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 sm:gap-5">
+            <ul className="grid list-none grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
               {state.data.map((watch, index) => (
                 <li key={watch.id}>
                   <WatchCard watch={watch} priority={index === 0} />
@@ -179,6 +195,7 @@ export default function CatalogPage() {
               ))}
             </ul>
           )}
+          </div>
         </div>
       </div>
     </>

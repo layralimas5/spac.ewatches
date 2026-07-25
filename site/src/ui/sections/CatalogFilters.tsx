@@ -51,9 +51,9 @@ export function CatalogFilters({
   const brands = useBrands()
 
   return (
-    <div className="rounded-xl border border-paper-line bg-paper-alt p-5 sm:p-6">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <div className="lg:col-span-2">
+    <div className="rounded-lg border border-paper-line bg-paper-alt p-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+        <div className="sm:col-span-2 lg:col-span-1">
           <label htmlFor="busca" className="eyebrow text-ink-500">
             Buscar
           </label>
@@ -145,7 +145,7 @@ export function CatalogFilters({
         </div>
       </div>
 
-      <div className="mt-5 flex items-center justify-between gap-4 border-t border-paper-line pt-4">
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-paper-line pt-4">
         {/* Região viva: quem usa leitor de tela ouve a contagem mudar sem precisar procurar. */}
         <p className="text-sm text-ink-500" role="status" aria-live="polite">
           {resultCount === 1 ? '1 relógio encontrado' : `${resultCount} relógios encontrados`}

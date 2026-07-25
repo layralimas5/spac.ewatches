@@ -18,6 +18,8 @@ import type { Watch } from '@/domain/watch'
 export const demoWatches: readonly Watch[] = [
   {
     id: 'rolex-datejust-41-jubilee',
+    sku: 'RLX-DJ41-JUB',
+    stock: 1,
     name: 'Datejust 41 Jubilee',
     brand: 'Rolex',
     reference: '126334',
@@ -46,6 +48,8 @@ export const demoWatches: readonly Watch[] = [
   },
   {
     id: 'omega-speedmaster-professional',
+    sku: 'OMG-SPD-PRO',
+    stock: 2,
     name: 'Speedmaster Professional Moonwatch',
     brand: 'Omega',
     reference: '310.30.42.50.01.002',
@@ -73,6 +77,8 @@ export const demoWatches: readonly Watch[] = [
   },
   {
     id: 'cartier-santos-medium',
+    sku: 'CTR-SNT-MED',
+    stock: 0,
     name: 'Santos de Cartier Médio',
     brand: 'Cartier',
     reference: 'WSSA0029',
@@ -101,6 +107,8 @@ export const demoWatches: readonly Watch[] = [
   },
   {
     id: 'tudor-black-bay-58',
+    sku: 'TDR-BB58-NVY',
+    stock: 1,
     name: 'Black Bay 58 Navy Blue',
     brand: 'Tudor',
     reference: 'M79030B',
@@ -128,6 +136,8 @@ export const demoWatches: readonly Watch[] = [
   },
   {
     id: 'iwc-portugieser-chronograph',
+    sku: 'IWC-PRT-CHR',
+    stock: 1,
     name: 'Portugieser Chronograph',
     brand: 'IWC',
     reference: 'IW371617',
@@ -156,6 +166,8 @@ export const demoWatches: readonly Watch[] = [
   },
   {
     id: 'grand-seiko-snowflake',
+    sku: 'GRS-SNW-FLK',
+    stock: 3,
     name: 'Snowflake Spring Drive',
     brand: 'Grand Seiko',
     reference: 'SBGA211',
@@ -184,6 +196,8 @@ export const demoWatches: readonly Watch[] = [
   },
   {
     id: 'tag-heuer-carrera-chronograph',
+    sku: 'TAG-CAR-CHR',
+    stock: 2,
     name: 'Carrera Chronograph',
     brand: 'TAG Heuer',
     reference: 'CBN2A1B',
@@ -211,6 +225,8 @@ export const demoWatches: readonly Watch[] = [
   },
   {
     id: 'longines-master-collection',
+    sku: 'LNG-MST-AUT',
+    stock: 4,
     name: 'Master Collection Automático',
     brand: 'Longines',
     reference: 'L2.909.4.78.3',

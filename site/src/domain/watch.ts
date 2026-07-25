@@ -33,9 +33,16 @@ export interface WatchSpecs {
 export interface Watch {
   /** Slug estável usado na URL. Ex: "rolex-datejust-41-jubilee". */
   readonly id: string
+  /** Código interno da peça, exibido na página de produto. */
+  readonly sku: string
   readonly name: string
   readonly brand: string
   readonly reference?: string
+  /**
+   * Unidades disponíveis. `0` esgota a peça e desliga a compra.
+   * Relógio importado costuma ser peça única, então `1` é o caso comum.
+   */
+  readonly stock: number
   readonly condition: Condition
   readonly availability: Availability
   readonly price: PriceInCents
@@ -77,6 +84,15 @@ export function isDiscounted(watch: Watch): boolean {
  * Para baixo de propósito: anunciar 30% quando o desconto real é 29,7% é
  * propaganda enganosa por arredondamento. `null` quando não há desconto.
  */
+export function isSoldOut(watch: Watch): boolean {
+  return watch.stock <= 0
+}
+
+/** Aviso de escassez só quando ele é verdade: exatamente uma peça restante. */
+export function isLastUnit(watch: Watch): boolean {
+  return watch.stock === 1
+}
+
 export function discountPercent(watch: Watch): number | null {
   if (watch.previousPrice === undefined || watch.previousPrice <= watch.price) return null
   return Math.floor(((watch.previousPrice - watch.price) / watch.previousPrice) * 100)
