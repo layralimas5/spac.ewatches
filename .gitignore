@@ -17,6 +17,14 @@ Thumbs.db
 # Dependências
 node_modules/
 
+# Build do site
+site/dist/
+
+# Segredos — nunca versionar
+.env
+.env.local
+.env.*.local
+
 # Arquivos temporários
 *.log
 *.tmp

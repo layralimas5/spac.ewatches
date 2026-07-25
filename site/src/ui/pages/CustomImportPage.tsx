@@ -1,0 +1,148 @@
+import { Link } from 'react-router-dom'
+import { Seo } from '@/ui/components/Seo'
+import { Reveal } from '@/ui/components/Reveal'
+import { buttonStyles } from '@/ui/components/Button'
+import { ArrowRightIcon, WhatsAppIcon } from '@/ui/components/icons'
+import { contactChannelLabel, customImportLink } from '@/lib/whatsapp'
+
+const steps = [
+  {
+    number: '01',
+    title: 'Você manda o modelo',
+    description:
+      'Marca e referência, um print do site oficial ou até uma foto que você viu por aí. Qualquer uma das três serve pra gente identificar a peça.',
+  },
+  {
+    number: '02',
+    title: 'A gente busca e cota',
+    description:
+      'Procuramos a peça com nossos fornecedores, confirmamos a procedência e voltamos com valor fechado e prazo estimado. Sem surpresa depois.',
+  },
+  {
+    number: '03',
+    title: 'Você aprova',
+    description:
+      'Só seguimos com a compra depois do seu ok no valor e no prazo. Combinamos a forma de pagamento no atendimento.',
+  },
+  {
+    number: '04',
+    title: 'Importamos e entregamos',
+    description:
+      'A gente acompanha o trâmite e te atualiza até o relógio chegar na sua mão, com caixa e documentos.',
+  },
+] as const
+
+const faq = [
+  {
+    question: 'Dá pra trazer qualquer modelo?',
+    answer:
+      'Quase sempre. Peças de produção corrente são as mais simples. Edições limitadas e modelos descontinuados dependem de disponibilidade no mercado — nesses casos a gente avisa antes de você se comprometer com qualquer coisa.',
+  },
+  {
+    question: 'Quanto tempo demora?',
+    answer:
+      'Depende do modelo e da origem. O prazo é estimado junto com a cotação, antes de você aprovar. Preferimos dar um prazo real a um prazo bonito.',
+  },
+  {
+    question: 'Como sei que é original?',
+    answer:
+      'Toda peça é verificada antes da entrega e vai com caixa e documentos. Se em algum momento a procedência não fechar, a compra não acontece.',
+  },
+  {
+    question: 'Preciso pagar tudo adiantado?',
+    answer:
+      'Não. As condições são combinadas no atendimento, caso a caso, junto com a cotação.',
+  },
+] as const
+
+export default function CustomImportPage() {
+  return (
+    <>
+      <Seo
+        title="Importação personalizada de relógios"
+        description="Você escolhe o modelo, a Space Watches importa. Cotação com valor e prazo fechados antes de você aprovar, com caixa e documentos originais."
+        path="/importacao"
+      />
+
+      <div className="container-brand py-14 sm:py-20">
+        <header className="max-w-3xl">
+          <p className="eyebrow text-gold-500">Importação personalizada</p>
+          <h1 className="mt-3 font-display text-4xl leading-[1.1] text-cream sm:text-5xl">
+            O modelo que você quer, mesmo que não esteja no catálogo
+          </h1>
+          <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
+            O catálogo mostra o que temos hoje — não o que dá pra conseguir. Se você já sabe o
+            relógio que quer, a gente busca, cota e importa pra você.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={customImportLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonStyles('primary', 'lg')}
+            >
+              <WhatsAppIcon className="h-5 w-5" />
+              {`Pedir cotação no ${contactChannelLabel()}`}
+            </a>
+            <Link to="/catalogo" className={buttonStyles('ghost', 'lg')}>
+              Ver o que já temos
+              <ArrowRightIcon className="h-4 w-4" />
+            </Link>
+          </div>
+        </header>
+
+        <section className="mt-20" aria-labelledby="como-funciona">
+          <h2 id="como-funciona" className="font-display text-3xl text-cream">
+            Como funciona
+          </h2>
+
+          <ol className="mt-10 grid list-none gap-6 sm:grid-cols-2">
+            {steps.map((step, index) => (
+              <Reveal key={step.number} delay={index * 0.08}>
+                <li className="h-full rounded-xl border border-ink-700 bg-ink-900 p-6">
+                  <span className="font-display text-2xl text-gold-600" aria-hidden="true">
+                    {step.number}
+                  </span>
+                  <h3 className="mt-3 font-display text-lg text-cream">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{step.description}</p>
+                </li>
+              </Reveal>
+            ))}
+          </ol>
+        </section>
+
+        <section className="mt-20" aria-labelledby="duvidas">
+          <h2 id="duvidas" className="font-display text-3xl text-cream">
+            Dúvidas frequentes
+          </h2>
+
+          <dl className="mt-8 divide-y divide-ink-700 border-y border-ink-700">
+            {faq.map((item) => (
+              <div key={item.question} className="py-6">
+                <dt className="font-medium text-cream">{item.question}</dt>
+                <dd className="mt-2 max-w-3xl text-sm leading-relaxed text-muted">{item.answer}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section className="mt-20 rounded-2xl border border-gold-600/30 bg-gold-500/5 px-6 py-14 text-center sm:px-12">
+          <h2 className="font-display text-3xl text-cream">Já sabe qual relógio quer?</h2>
+          <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-muted">
+            Manda a referência que a gente volta com a cotação. Sem compromisso até você aprovar.
+          </p>
+          <a
+            href={customImportLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${buttonStyles('primary', 'lg')} mt-8`}
+          >
+            <WhatsAppIcon className="h-5 w-5" />
+            {`Pedir cotação no ${contactChannelLabel()}`}
+          </a>
+        </section>
+      </div>
+    </>
+  )
+}
