@@ -154,7 +154,7 @@ export default function CatalogPage() {
                   href={customImportLink()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={buttonStyles('outline-light', 'md')}
+                  className={buttonStyles('outline', 'md')}
                 >
                   <WhatsAppIcon className="h-4 w-4" />
                   {`Falar no ${contactChannelLabel()}`}
@@ -169,7 +169,7 @@ export default function CatalogPage() {
               description="Limpe os filtros para ver o catálogo inteiro — ou peça direto o modelo que você procura, que a gente cota a importação."
               action={
                 <div className="flex flex-col gap-3 sm:flex-row">
-                  <button type="button" onClick={handleClear} className={buttonStyles('outline-light', 'md')}>
+                  <button type="button" onClick={handleClear} className={buttonStyles('outline', 'md')}>
                     Limpar filtros
                   </button>
                   <a

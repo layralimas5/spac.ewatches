@@ -15,14 +15,8 @@ export function WatchGallery({
 
   return (
     <div className="lg:sticky lg:top-24">
-      {/* Vinheta radial suave por trás da peça: dá profundidade sem sombra dura,
-          que é o que faz foto de relógio parecer catálogo caro. */}
-      <div className="relative overflow-hidden rounded-2xl border border-paper-line bg-gradient-to-b from-paper-alt to-paper">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-500/10 blur-3xl"
-        />
-        <div className="relative aspect-square">
+      <div className="overflow-hidden rounded-md border border-paper-line bg-paper-alt">
+        <div className="aspect-square">
           {/* `eager` de propósito: esta é a maior imagem da página e define o LCP. */}
           <WatchPhoto image={active} loading="eager" sizes="(min-width: 1024px) 560px, 92vw" />
         </div>
@@ -40,7 +34,7 @@ export function WatchGallery({
                 className={cn(
                   'aspect-square w-full overflow-hidden rounded-lg border bg-paper-alt transition-colors',
                   index === activeIndex
-                    ? 'border-gold-600'
+                    ? 'border-ink-950'
                     : 'border-paper-line hover:border-ink-500/40',
                 )}
               >

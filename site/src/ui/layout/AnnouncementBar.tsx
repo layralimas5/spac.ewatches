@@ -6,7 +6,7 @@ function AnnouncementList({ hidden = false }: { readonly hidden?: boolean }) {
       {announcements.map((text) => (
         <li key={text} className="flex items-center gap-6 px-6 py-2 whitespace-nowrap">
           <span className="eyebrow text-cream/90">{text}</span>
-          <span className="h-1 w-1 rounded-full bg-gold-500" aria-hidden="true" />
+          <span className="h-1 w-1 rounded-full bg-cream/40" aria-hidden="true" />
         </li>
       ))}
     </ul>

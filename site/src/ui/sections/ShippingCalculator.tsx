@@ -65,7 +65,7 @@ export function ShippingCalculator({ subtotal }: { readonly subtotal: PriceInCen
           value={formatPostalCode(postalCode)}
           onChange={(event) => setPostalCode(normalizePostalCode(event.target.value))}
           placeholder="00000-000"
-          className="h-10 w-36 rounded-md border border-paper-line bg-paper px-3 text-sm text-ink-950 placeholder:text-ink-500/70 focus:border-gold-600"
+          className="h-10 w-36 rounded-md border border-paper-line bg-paper px-3 text-sm text-ink-950 placeholder:text-ink-500/70 focus:border-ink-950"
         />
         <button
           type="submit"

@@ -100,7 +100,7 @@ export function Header() {
                 className={({ isActive }) =>
                   cn(
                     'inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm transition-colors',
-                    isActive ? 'text-gold-700' : 'text-ink-950 hover:text-gold-700',
+                    isActive ? 'text-ink-950' : 'text-ink-950 hover:text-ink-950',
                   )
                 }
               >
@@ -144,7 +144,7 @@ export function Header() {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="O que você procura?"
-              className="h-10 w-full rounded-md border border-paper-line bg-paper-alt pl-9 pr-3 text-sm text-ink-950 placeholder:text-ink-500/70 focus:border-gold-600 focus:bg-paper"
+              className="h-10 w-full rounded-md border border-paper-line bg-paper-alt pl-9 pr-3 text-sm text-ink-950 placeholder:text-ink-500/70 focus:border-ink-950 focus:bg-paper"
             />
           </div>
         </form>
@@ -152,12 +152,12 @@ export function Header() {
         <button
           type="button"
           onClick={open}
-          className="relative ml-auto inline-flex h-10 w-10 items-center justify-center rounded-md text-ink-950 transition-colors hover:text-gold-700 md:ml-2"
+          className="relative ml-auto inline-flex h-10 w-10 items-center justify-center rounded-md text-ink-950 transition-colors hover:text-ink-950 md:ml-2"
           aria-label={count === 0 ? 'Abrir carrinho, vazio' : `Abrir carrinho, ${count} item(ns)`}
         >
           <CartIcon className="h-6 w-6" />
           {count > 0 && (
-            <span className="absolute -right-0.5 -top-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-gold-500 px-1 text-[0.6875rem] font-semibold text-ink-950">
+            <span className="absolute -right-0.5 -top-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ink-950 px-1 text-[0.6875rem] font-semibold text-paper">
               {count}
             </span>
           )}
@@ -187,7 +187,7 @@ export function Header() {
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
                     placeholder="O que você procura?"
-                    className="h-11 w-full rounded-md border border-paper-line bg-paper-alt pl-9 pr-3 text-sm text-ink-950 placeholder:text-ink-500/70 focus:border-gold-600 focus:bg-paper"
+                    className="h-11 w-full rounded-md border border-paper-line bg-paper-alt pl-9 pr-3 text-sm text-ink-950 placeholder:text-ink-500/70 focus:border-ink-950 focus:bg-paper"
                   />
                 </div>
               </form>

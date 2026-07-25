@@ -39,7 +39,7 @@ const sortOptions: ReadonlyArray<{ value: CatalogSort; label: string }> = [
 
 const fieldClass =
   'h-11 w-full rounded-lg border border-paper-line bg-paper px-3 text-sm text-ink-950 ' +
-  'placeholder:text-ink-500/70 transition-colors hover:border-ink-500/40 focus:border-gold-600'
+  'placeholder:text-ink-500/70 transition-colors hover:border-ink-500/40 focus:border-ink-950'
 
 export function CatalogFilters({
   values,
@@ -155,7 +155,7 @@ export function CatalogFilters({
           <button
             type="button"
             onClick={onClear}
-            className="text-sm text-gold-700 transition-colors hover:text-gold-600"
+            className="text-sm text-ink-950 transition-colors hover:text-ink-500"
           >
             Limpar filtros
           </button>

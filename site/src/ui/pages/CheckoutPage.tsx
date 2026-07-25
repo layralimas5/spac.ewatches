@@ -300,7 +300,7 @@ export default function CheckoutPage() {
                       className={cn(
                         'flex cursor-pointer items-center justify-between gap-4 rounded-md border p-3 transition-colors',
                         shipping?.id === option.id
-                          ? 'border-gold-600 bg-gold-500/5'
+                          ? 'border-ink-950 bg-paper-alt'
                           : 'border-paper-line hover:border-ink-500/40',
                       )}
                     >
@@ -310,7 +310,7 @@ export default function CheckoutPage() {
                           name="frete"
                           checked={shipping?.id === option.id}
                           onChange={() => setShipping(option)}
-                          className="accent-gold-600"
+                          className="accent-ink-950"
                         />
                         <span>
                           <span className="block text-sm text-ink-950">{option.label}</span>
@@ -354,7 +354,7 @@ export default function CheckoutPage() {
                     className={cn(
                       'flex cursor-pointer items-center gap-3 rounded-md border p-3 transition-colors',
                       paymentMethod === method.id
-                        ? 'border-gold-600 bg-gold-500/5'
+                        ? 'border-ink-950 bg-paper-alt'
                         : 'border-paper-line hover:border-ink-500/40',
                     )}
                   >
@@ -363,7 +363,7 @@ export default function CheckoutPage() {
                       name="pagamento"
                       checked={paymentMethod === method.id}
                       onChange={() => setPaymentMethod(method.id)}
-                      className="accent-gold-600"
+                      className="accent-ink-950"
                     />
                     <span>
                       <span className="block text-sm text-ink-950">{method.label}</span>
@@ -438,7 +438,7 @@ export default function CheckoutPage() {
                 {totals.discount > 0 && (
                   <div className="flex justify-between">
                     <dt className="text-ink-500">Desconto no Pix</dt>
-                    <dd className="text-gold-700">{`-${formatPrice(totals.discount)}`}</dd>
+                    <dd className="text-ink-950">{`-${formatPrice(totals.discount)}`}</dd>
                   </div>
                 )}
                 <div className="flex justify-between border-t border-paper-line pt-3 text-base font-semibold">
@@ -477,7 +477,7 @@ export default function CheckoutPage() {
 
 function fieldClass(hasError: boolean): string {
   return cn(
-    'h-11 w-full rounded-md border bg-paper px-3 text-sm text-ink-950 focus:border-gold-600',
+    'h-11 w-full rounded-md border bg-paper px-3 text-sm text-ink-950 focus:border-ink-950',
     hasError ? 'border-ink-950' : 'border-paper-line',
   )
 }

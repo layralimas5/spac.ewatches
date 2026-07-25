@@ -66,7 +66,7 @@ export default function CustomImportPage() {
 
       <div className="container-brand py-14 sm:py-20">
         <header className="max-w-3xl">
-          <p className="eyebrow text-gold-700">Importação personalizada</p>
+          <p className="eyebrow text-ink-950">Importação personalizada</p>
           <h1 className="mt-3 font-display text-4xl leading-[1.1] text-ink-950 sm:text-5xl">
             O modelo que você quer, mesmo que não esteja no catálogo
           </h1>
@@ -85,7 +85,7 @@ export default function CustomImportPage() {
               <WhatsAppIcon className="h-5 w-5" />
               {`Pedir cotação no ${contactChannelLabel()}`}
             </a>
-            <Link to="/catalogo" className={buttonStyles('ghost-light', 'lg')}>
+            <Link to="/catalogo" className={buttonStyles('ghost', 'lg')}>
               Ver o que já temos
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
@@ -101,7 +101,7 @@ export default function CustomImportPage() {
             {steps.map((step, index) => (
               <Reveal key={step.number} delay={index * 0.08}>
                 <li className="h-full rounded-xl border border-paper-line bg-paper-alt p-6">
-                  <span className="font-display text-2xl text-gold-600" aria-hidden="true">
+                  <span className="font-display text-2xl text-ink-500" aria-hidden="true">
                     {step.number}
                   </span>
                   <h3 className="mt-3 font-display text-lg text-ink-950">{step.title}</h3>
@@ -127,7 +127,7 @@ export default function CustomImportPage() {
           </dl>
         </section>
 
-        <section className="mt-20 rounded-2xl border border-gold-600/30 bg-gold-500/5 px-6 py-14 text-center sm:px-12">
+        <section className="mt-20 rounded-2xl border border-paper-line bg-paper-alt px-6 py-14 text-center sm:px-12">
           <h2 className="font-display text-3xl text-ink-950">Já sabe qual relógio quer?</h2>
           <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-ink-500">
             Manda a referência que a gente volta com a cotação. Sem compromisso até você aprovar.

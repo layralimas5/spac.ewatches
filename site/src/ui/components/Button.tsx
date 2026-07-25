@@ -1,25 +1,41 @@
 import { cn } from '@/lib/cn'
 
-export type ButtonVariant = 'primary' | 'outline' | 'ghost' | 'outline-light' | 'ghost-light'
+/**
+ * Variantes de botão.
+ *
+ * Sufixo `-dark` = botão que vive DENTRO de um bloco escuro (banner, rodapé).
+ * Sem sufixo = fundo claro, que é o padrão do site.
+ *
+ * Com a paleta só em preto, branco e cinza, o CTA principal é o retângulo
+ * preto sólido: num site branco ele é o maior contraste possível da tela.
+ * Dentro de bloco escuro isso se inverte — lá o cheio é branco.
+ */
+export type ButtonVariant =
+  | 'primary'
+  | 'outline'
+  | 'ghost'
+  | 'primary-dark'
+  | 'outline-dark'
+  | 'ghost-dark'
 export type ButtonSize = 'md' | 'lg'
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-lg font-medium ' +
+  'inline-flex items-center justify-center gap-2 rounded-md font-medium ' +
   'transition-colors duration-200 disabled:opacity-50 disabled:pointer-events-none'
 
 const variants: Record<ButtonVariant, string> = {
-  // Dourado sólido com texto escuro: o único botão cheio da marca, reservado ao CTA principal.
-  primary: 'bg-gold-500 text-ink-950 hover:bg-gold-400',
-  outline: 'border border-gold-600 text-gold-400 hover:bg-gold-500/10',
-  ghost: 'text-muted hover:text-cream',
-  // Variantes para fundo claro — o dourado claro e o `muted` somem no branco.
-  'outline-light': 'border border-gold-600 text-gold-700 hover:bg-gold-500/10',
-  'ghost-light': 'text-ink-500 hover:text-ink-950',
+  primary: 'bg-ink-950 text-paper hover:bg-ink-800',
+  outline: 'border border-ink-950 text-ink-950 hover:bg-ink-950 hover:text-paper',
+  ghost: 'text-ink-500 hover:text-ink-950',
+
+  'primary-dark': 'bg-paper text-ink-950 hover:bg-paper-alt',
+  'outline-dark': 'border border-cream/40 text-cream hover:bg-cream hover:text-ink-950',
+  'ghost-dark': 'text-muted hover:text-cream',
 }
 
 const sizes: Record<ButtonSize, string> = {
   md: 'h-11 px-5 text-sm',
-  lg: 'h-13 px-7 text-base',
+  lg: 'h-12 px-7 text-sm',
 }
 
 /**

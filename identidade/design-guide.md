@@ -1,34 +1,36 @@
 # Identidade visual — Space Watches
 
-> Cores e valores abaixo foram **derivados do logo** (`identidade/logo.png`), não passados
-> pela marca. São aproximações fiéis ao que o arquivo mostra. Se existir um manual oficial,
-> substituir os hex por eles.
+> **Preto, branco e cinza. Nenhuma outra cor.** Decisão da loja.
+>
+> O dourado do logo saiu da interface do site. Ele continua existindo no arquivo
+> `identidade/logo.png`, mas não é mais cor de sistema.
 
 ---
 
 ## Cores
 
-- **Fundo principal:** `#0D0D10` — preto profundo, levemente frio. É a base da marca; o
-  logo já nasce sobre ele.
+Sem cor de acento, a hierarquia vem de **peso, tamanho e contraste** — nunca de cor.
+Escala neutra de verdade (R=G=B), sem viés quente ou frio.
 
-- **Cor de destaque / CTA:** `#C9A24C` — dourado quente (o ponteiro do relógio e a palavra
-  "WATCHES"). Usar com parcimônia: preço, CTA, detalhe, filete. Dourado em excesso vira
-  cafona e derruba o premium.
+| Papel | Hex |
+| --- | --- |
+| Preto / texto principal | `#0A0A0A` |
+| Escuro secundário (hover do CTA) | `#262626` |
+| Cinza de corpo sobre branco (7,4:1) | `#525252` |
+| Cinza de apoio, rótulos (4,6:1) | `#737373` |
+| Linha e borda | `#E5E5E5` |
+| Fundo alternativo / cards | `#F5F5F5` |
+| Branco / fundo padrão | `#FFFFFF` |
+| Texto de apoio sobre fundo escuro | `#A3A3A3` |
 
-- **Texto principal:** `#FFFFFF` para títulos, `#B8B8BE` para texto de apoio sobre fundo escuro.
+- **CTA principal:** retângulo **preto sólido com texto branco**. Num site branco, o
+  bloco preto é o maior contraste possível da tela — ele é o ponto mais forte sem
+  precisar de cor. Dentro de bloco escuro isso inverte: lá o botão cheio é branco.
 
-- **Fundo alternativo / cards:** `#16161A` — um degrau acima do fundo, para separar card
-  de página sem precisar de borda forte.
+- **Selo de desconto:** preto sólido com texto branco, no formato "-30% OFF".
 
-- **Selo de desconto:** preto sólido (`#0D0D10`) com texto branco, no formato "30% OFF".
-
-  A referência de e-commerce usa vermelho/laranja aqui. Ficou em preto para não brigar
-  com o dourado da marca — o contraste continua forte e o card não vira panfleto de
-  liquidação. Se a loja quiser o vermelho de varejo, é uma linha em `WatchCard.tsx`.
-
-- **Cor a evitar:** verde de "compre já", amarelo de desconto e contador de urgência.
-  A marca vende relógio original importado; apelo de liquidação derruba o preço
-  percebido da peça.
+- **Cor a evitar:** qualquer uma. Vermelho de promoção, verde de "compre já", amarelo
+  de desconto — nada disso entra.
 
 ---
 
@@ -49,7 +51,7 @@
 
 - **Detalhe da marca:** o logo usa **letter-spacing largo em caixa alta** ("W A T C H E S").
   Repetir esse tratamento em rótulos e categorias (`tracking-[0.25em]`, uppercase, tamanho
-  pequeno) — é a assinatura visual mais reconhecível depois do dourado.
+  pequeno) — sem cor de acento, é a assinatura visual que sobrou da marca.
 
 ---
 
@@ -63,29 +65,25 @@ Referência escolhida pela loja: **saintgermainbrand.com.br** — e-commerce bra
 convencional, branco, sans-serif, grade densa de produto com preço, desconto,
 parcelamento e botão de compra visíveis no card.
 
-Isso substituiu a primeira leitura (minimalista escuro tipo boutique de luxo). O dourado
-continua sendo cor de detalhe e CTA, e o escuro continua sendo a assinatura da marca —
-mas em faixas, não como fundo geral.
+Isso substituiu a primeira leitura (minimalista escuro tipo boutique de luxo).
 
 ---
 
 ## Elementos-chave
 
-- Bordas: finas e discretas — `1px` em `#26262C`. O logo usa exatamente esse recurso (anel
-  fino em volta do círculo).
-- Border-radius dos cards: suave, 8–12px. Nada de card totalmente quadrado nem muito redondo.
-- Botões: primário em dourado com texto escuro; secundário em contorno fino dourado sobre
-  fundo transparente.
-- Sombras: quase inexistentes. Em fundo escuro, separação se faz por tom de fundo, não por
-  sombra.
+- Bordas: finas e discretas — `1px` em `#E5E5E5` no claro, `#404040` no escuro.
+- Border-radius: 6–8px. Card de e-commerce é mais quadrado que card de portfólio.
+- Botões: primário preto sólido com texto branco; secundário em contorno preto que
+  inverte no hover. Dentro de bloco escuro, os dois invertem.
+- Sombras: quase inexistentes. A separação se faz por linha e por tom de fundo.
 
 ---
 
 ## O que NUNCA fazer
 
-- Usar dourado como cor de fundo grande — é cor de detalhe e CTA.
-- Usar o dourado `#C9A24C` em **texto pequeno sobre branco**: dá 3,3:1 e reprova em
-  contraste AA. Para texto em fundo claro existe o `#8A6D24` (~4,9:1).
+- Introduzir qualquer cor. A paleta é preto, branco e cinza — e só.
+- Usar cinza claro (`#737373` ou mais claro) em texto pequeno sobre branco: fica no
+  limite do AA. Texto de corpo usa `#525252`.
 - Contador de urgência estridente e apelo de liquidação.
 - Empilhar mais de uma família tipográfica — é tudo Inter.
 

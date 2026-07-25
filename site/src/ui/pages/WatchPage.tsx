@@ -52,7 +52,7 @@ export default function WatchPage() {
           title="Não consegui carregar este relógio"
           description="Algo falhou ao buscar os dados da peça. Volte ao catálogo e tente de novo."
           action={
-            <Link to="/catalogo" className={buttonStyles('outline-light', 'md')}>
+            <Link to="/catalogo" className={buttonStyles('outline', 'md')}>
               Voltar ao catálogo
             </Link>
           }
@@ -192,7 +192,7 @@ function WatchDetail({ watch }: { readonly watch: Watch }) {
               </p>
 
               {PIX_DISCOUNT_PERCENT > 0 && (
-                <p className="mt-1 text-sm font-medium text-gold-700">
+                <p className="mt-1 text-sm font-medium text-ink-950">
                   {`${formatPrice(pixPrice)} no Pix (${PIX_DISCOUNT_PERCENT}% de desconto)`}
                 </p>
               )}
@@ -244,7 +244,7 @@ function WatchDetail({ watch }: { readonly watch: Watch }) {
                   href={watchInquiryLink(watch)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${buttonStyles('outline-light', 'md')} mt-2 w-full`}
+                  className={`${buttonStyles('outline', 'md')} mt-2 w-full`}
                 >
                   <WhatsAppIcon className="h-4 w-4" />
                   {`Tirar dúvida no ${contactChannelLabel()}`}
@@ -259,20 +259,20 @@ function WatchDetail({ watch }: { readonly watch: Watch }) {
             <ul className="mt-6 list-none divide-y divide-paper-line border-y border-paper-line">
               {watch.hasBoxAndPapers && (
                 <li className="flex items-center gap-3 py-3">
-                  <BoxIcon className="h-5 w-5 shrink-0 text-gold-600" />
+                  <BoxIcon className="h-5 w-5 shrink-0 text-ink-500" />
                   <span className="text-sm text-ink-500">
                     Acompanha caixa e documentos originais
                   </span>
                 </li>
               )}
               <li className="flex items-center gap-3 py-3">
-                <ShieldIcon className="h-5 w-5 shrink-0 text-gold-600" />
+                <ShieldIcon className="h-5 w-5 shrink-0 text-ink-500" />
                 <span className="text-sm text-ink-500">
                   {`Garantia de ${watch.warrantyMonths} meses`}
                 </span>
               </li>
               <li className="flex items-center gap-3 py-3">
-                <CheckIcon className="h-5 w-5 shrink-0 text-gold-600" />
+                <CheckIcon className="h-5 w-5 shrink-0 text-ink-500" />
                 <span className="text-sm text-ink-500">
                   Procedência verificada antes da entrega
                 </span>
@@ -328,7 +328,7 @@ function WatchDetail({ watch }: { readonly watch: Watch }) {
             },
           ].map((item) => (
             <div key={item.title}>
-              <item.icon className="h-6 w-6 text-gold-500" />
+              <item.icon className="h-6 w-6 text-cream" />
               <h2 className="mt-3 text-base text-cream">{item.title}</h2>
               <p className="mt-1.5 text-sm leading-relaxed text-muted">{item.text}</p>
             </div>
@@ -363,7 +363,7 @@ function WatchDetail({ watch }: { readonly watch: Watch }) {
           {related.status === 'success' && related.data.length === 0 && (
             <p className="text-sm text-ink-500">
               Nenhuma outra peça no catálogo por enquanto.{' '}
-              <Link to="/importacao" className="text-gold-700 hover:text-gold-600">
+              <Link to="/importacao" className="text-ink-950 hover:text-ink-500">
                 Peça por encomenda
               </Link>
               .

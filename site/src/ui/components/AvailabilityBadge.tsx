@@ -7,9 +7,9 @@ const label: Record<Availability, string> = {
 }
 
 const style: Record<Availability, string> = {
-  // Dourado discreto marca o que sai rápido, sem virar selo de promoção.
   // Fundo sólido porque o selo fica sobre a foto do produto, não sobre o card.
-  'pronta-entrega': 'border-gold-600/40 bg-paper text-gold-700',
+  // Pronta-entrega leva a borda escura; encomenda fica em cinza, um degrau abaixo.
+  'pronta-entrega': 'border-ink-950 bg-paper text-ink-950',
   'sob-encomenda': 'border-paper-line bg-paper text-ink-500',
 }
 

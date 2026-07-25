@@ -18,7 +18,7 @@ export default function OrderConfirmationPage() {
       />
 
       <div className="container-brand flex flex-col items-center py-20 text-center">
-        <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-gold-500/15 text-gold-700">
+        <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-paper-alt text-ink-950">
           <CheckIcon className="h-7 w-7" />
         </span>
 
@@ -49,7 +49,7 @@ export default function OrderConfirmationPage() {
             <WhatsAppIcon className="h-5 w-5" />
             {`Abrir o ${contactChannelLabel()}`}
           </a>
-          <Link to="/catalogo" className={buttonStyles('outline-light', 'lg')}>
+          <Link to="/catalogo" className={buttonStyles('outline', 'lg')}>
             Continuar comprando
           </Link>
         </div>

@@ -35,7 +35,7 @@ export function StateMessage({ title, description, action, tone = 'neutral' }: S
       role={tone === 'error' ? 'alert' : undefined}
     >
       <h2
-        className={cn('font-display text-xl', tone === 'error' ? 'text-gold-700' : 'text-ink-950')}
+        className={cn('font-display text-xl', tone === 'error' ? 'text-ink-950' : 'text-ink-950')}
       >
         {title}
       </h2>

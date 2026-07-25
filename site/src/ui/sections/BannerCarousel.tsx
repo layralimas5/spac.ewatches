@@ -73,32 +73,27 @@ export function BannerCarousel() {
           aria-roledescription="slide"
           aria-label={`${index + 1} de ${total}`}
         >
-          {slide.image !== undefined ? (
-            <img
-              src={slide.image}
-              alt={slide.imageAlt ?? ''}
-              className="absolute inset-0 h-full w-full object-cover"
-              loading="eager"
-              decoding="async"
-            />
-          ) : (
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute left-1/2 top-0 h-[36rem] w-[52rem] -translate-x-1/2 -translate-y-1/3 rounded-full bg-gold-500/10 blur-[120px]"
-            />
-          )}
-
-          {/* Véu: garante contraste do texto e do header sobre qualquer foto. */}
           {slide.image !== undefined && (
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-r from-ink-950/95 via-ink-950/75 to-ink-950/40"
-            />
+            <>
+              <img
+                src={slide.image}
+                alt={slide.imageAlt ?? ''}
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="eager"
+                decoding="async"
+              />
+              {/* Véu escuro: o texto do banner é branco, e sem ele qualquer foto
+                  clara torna o título ilegível. */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-gradient-to-r from-ink-950/95 via-ink-950/75 to-ink-950/40"
+              />
+            </>
           )}
 
-          <div className="container-brand relative pt-32 pb-20 sm:pt-40 sm:pb-24 lg:pt-44 lg:pb-28">
+          <div className="container-brand relative py-20 sm:py-24 lg:py-28">
             <div className="max-w-2xl">
-              <p className="eyebrow text-gold-400">{slide.eyebrow}</p>
+              <p className="eyebrow text-muted">{slide.eyebrow}</p>
 
               <h1 className="mt-4 text-4xl leading-[1.1] text-cream sm:text-5xl lg:text-6xl">
                 {slide.title}
@@ -108,7 +103,7 @@ export function BannerCarousel() {
                 {slide.description}
               </p>
 
-              <Link to={slide.ctaTo} className={`${buttonStyles('primary', 'lg')} mt-8`}>
+              <Link to={slide.ctaTo} className={`${buttonStyles('primary-dark', 'lg')} mt-8`}>
                 {slide.ctaLabel}
                 <ArrowRightIcon className="h-4 w-4" />
               </Link>
@@ -129,7 +124,7 @@ export function BannerCarousel() {
                 aria-current={slideIndex === index}
                 className={cn(
                   'h-1 rounded-full transition-all duration-300',
-                  slideIndex === index ? 'w-10 bg-gold-500' : 'w-5 bg-cream/30 hover:bg-cream/60',
+                  slideIndex === index ? 'w-10 bg-cream' : 'w-5 bg-cream/30 hover:bg-cream/60',
                 )}
               />
             ))}

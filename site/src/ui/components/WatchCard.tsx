@@ -60,7 +60,7 @@ export function WatchCard({ watch, priority = false }: WatchCardProps) {
         <p className="eyebrow text-ink-500">{watch.brand}</p>
 
         <h3 className="mt-1 text-sm leading-snug font-medium text-ink-950">
-          <Link to={`/relogio/${watch.id}`} className="hover:text-gold-700">
+          <Link to={`/relogio/${watch.id}`} className="hover:text-ink-950">
             {watch.name}
           </Link>
         </h3>
@@ -89,7 +89,7 @@ export function WatchCard({ watch, priority = false }: WatchCardProps) {
             <button
               type="button"
               onClick={() => add(watch)}
-              className="mt-3 inline-flex h-9 w-full items-center justify-center rounded-md bg-gold-500 text-xs font-semibold text-ink-950 transition-colors hover:bg-gold-400"
+              className="mt-3 inline-flex h-9 w-full items-center justify-center rounded-md bg-ink-950 text-xs font-semibold text-paper transition-colors hover:bg-ink-800"
             >
               Comprar
             </button>

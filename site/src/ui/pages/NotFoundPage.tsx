@@ -13,8 +13,8 @@ export default function NotFoundPage() {
       />
 
       <div className="container-brand flex flex-col items-center py-28 text-center">
-        <WatchIcon className="h-12 w-12 text-gold-700" />
-        <p className="eyebrow mt-8 text-gold-700">Erro 404</p>
+        <WatchIcon className="h-12 w-12 text-ink-950" />
+        <p className="eyebrow mt-8 text-ink-950">Erro 404</p>
         <h1 className="mt-3 font-display text-4xl text-ink-950">Essa página não existe</h1>
         <p className="mt-4 max-w-md text-base leading-relaxed text-ink-500">
           O link pode estar errado ou a página pode ter saído do ar. O catálogo continua aqui.
@@ -24,7 +24,7 @@ export default function NotFoundPage() {
           <Link to="/catalogo" className={buttonStyles('primary', 'lg')}>
             Ver catálogo
           </Link>
-          <Link to="/" className={buttonStyles('ghost-light', 'lg')}>
+          <Link to="/" className={buttonStyles('ghost', 'lg')}>
             Voltar ao início
           </Link>
         </div>

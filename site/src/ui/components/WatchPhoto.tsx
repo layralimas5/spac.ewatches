@@ -33,7 +33,7 @@ export function WatchPhoto({ image, className, loading = 'lazy', sizes }: WatchP
         role="img"
         aria-label={image?.alt ?? 'Foto do relógio ainda não cadastrada'}
       >
-        <WatchIcon className="h-10 w-10 text-gold-600/60" />
+        <WatchIcon className="h-10 w-10 text-ink-400" />
         <span className="eyebrow text-ink-500/60">Space Watches</span>
       </div>
     )

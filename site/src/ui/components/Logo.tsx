@@ -24,7 +24,8 @@ export function Logo({
       >
         Space
       </span>
-      <span className={cn('eyebrow', tone === 'light' ? 'text-gold-700' : 'text-gold-500')}>
+      {/* Sem cor de acento, a diferença entre as duas palavras vem do cinza. */}
+      <span className={cn('eyebrow', tone === 'light' ? 'text-ink-400' : 'text-muted')}>
         Watches
       </span>
     </span>

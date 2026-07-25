@@ -7,35 +7,35 @@
  */
 @theme {
   /*
-   * O site é claro por padrão. Blocos escuros (hero, pilares de confiança,
-   * rodapé) são exceções deliberadas — é o contraste entre os dois que dá o
-   * ritmo da página, e é por isso que o escuro não pode virar o fundo geral.
+   * Paleta: preto, branco e cinza. Nada mais.
+   *
+   * Sem cor de acento, a hierarquia passa a vir de PESO, TAMANHO e CONTRASTE —
+   * não de cor. Por isso o CTA é preto sólido: num site branco, o bloco preto
+   * é o elemento de maior contraste possível, e vira o ponto mais forte da tela
+   * sem precisar de cor nenhuma.
+   *
+   * Os cinzas são neutros de verdade (R=G=B), sem viés quente ou frio.
    */
 
-  /* Superfícies escuras */
-  --color-ink-950: #0d0d10;
-  --color-ink-900: #16161a;
-  --color-ink-800: #1d1d22;
-  --color-ink-700: #26262c;
+  /* Preto e cinzas escuros — texto principal e superfícies invertidas */
+  --color-ink-950: #0a0a0a;
+  --color-ink-900: #171717;
+  --color-ink-800: #262626;
+  --color-ink-700: #404040;
 
-  /* Dourado — cor de detalhe e CTA. Nunca fundo grande. */
-  --color-gold-400: #dcbc6e;
-  --color-gold-500: #c9a24c;
-  --color-gold-600: #a8863a;
-  /* Dourado para TEXTO sobre fundo claro: o 600 dá só 3.3:1 no branco e
-     reprova em AA para tamanhos pequenos. Este fecha em ~4.9:1. */
-  --color-gold-700: #8a6d24;
+  /* Cinza de corpo sobre branco: 7.4:1, passa AA com folga */
+  --color-ink-500: #525252;
+  /* Cinza de apoio: rótulos e texto secundário. 4.6:1, no limite do AA */
+  --color-ink-400: #737373;
 
   /* Texto sobre fundo escuro */
   --color-cream: #ffffff;
-  --color-muted: #b8b8be;
+  --color-muted: #a3a3a3;
 
   /* Superfícies claras — o padrão do site */
   --color-paper: #ffffff;
-  --color-paper-alt: #f7f7f5;
-  --color-paper-line: #e4e4e0;
-  /* Cinza de corpo sobre branco: contraste AA sem virar preto puro (7.2:1) */
-  --color-ink-500: #56565f;
+  --color-paper-alt: #f5f5f5;
+  --color-paper-line: #e5e5e5;
 
   /*
    * Tipografia — sans-serif em tudo.
@@ -79,9 +79,14 @@
 
   /* Foco visível em tudo que é navegável — requisito de a11y, não enfeite */
   :where(a, button, input, select, textarea, [tabindex]):focus-visible {
-    outline: 2px solid var(--color-gold-500);
-    outline-offset: 3px;
+    outline: 2px solid var(--color-ink-950);
+    outline-offset: 2px;
     border-radius: 2px;
+  }
+
+  /* Em bloco escuro o anel preto sumiria; ali ele inverte. */
+  .on-dark :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline-color: var(--color-cream);
   }
 
   /* Respeita quem pediu menos movimento no sistema */
