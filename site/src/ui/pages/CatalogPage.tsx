@@ -102,9 +102,9 @@ export default function CatalogPage() {
 
       <div className="container-brand py-14 sm:py-20">
         <header className="max-w-2xl">
-          <p className="eyebrow text-gold-500">Catálogo</p>
-          <h1 className="mt-3 font-display text-4xl text-cream sm:text-5xl">Peças disponíveis</h1>
-          <p className="mt-4 text-base leading-relaxed text-muted">
+          <p className="eyebrow text-gold-700">Catálogo</p>
+          <h1 className="mt-3 font-display text-4xl text-ink-950 sm:text-5xl">Peças disponíveis</h1>
+          <p className="mt-4 text-base leading-relaxed text-ink-500">
             O que está em mãos e o que dá pra trazer sob encomenda. Não achou o seu modelo? A gente importa.
           </p>
         </header>
@@ -121,7 +121,7 @@ export default function CatalogPage() {
 
         <div className="mt-10">
           {state.status === 'loading' && (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 sm:gap-5">
               {[0, 1, 2, 3, 4, 5].map((index) => (
                 <CardSkeleton key={index} />
               ))}
@@ -138,7 +138,7 @@ export default function CatalogPage() {
                   href={customImportLink()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={buttonStyles('outline', 'md')}
+                  className={buttonStyles('outline-light', 'md')}
                 >
                   <WhatsAppIcon className="h-4 w-4" />
                   {`Falar no ${contactChannelLabel()}`}
@@ -153,7 +153,7 @@ export default function CatalogPage() {
               description="Limpe os filtros para ver o catálogo inteiro — ou peça direto o modelo que você procura, que a gente cota a importação."
               action={
                 <div className="flex flex-col gap-3 sm:flex-row">
-                  <button type="button" onClick={handleClear} className={buttonStyles('outline', 'md')}>
+                  <button type="button" onClick={handleClear} className={buttonStyles('outline-light', 'md')}>
                     Limpar filtros
                   </button>
                   <a
@@ -171,7 +171,7 @@ export default function CatalogPage() {
           )}
 
           {state.status === 'success' && state.data.length > 0 && (
-            <ul className="grid list-none gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="grid list-none grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 sm:gap-5">
               {state.data.map((watch, index) => (
                 <li key={watch.id}>
                   <WatchCard watch={watch} priority={index === 0} />

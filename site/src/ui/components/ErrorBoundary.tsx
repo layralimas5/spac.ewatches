@@ -30,8 +30,8 @@ export class ErrorBoundary extends Component<Props, State> {
 
     return (
       <div className="container-brand flex flex-col items-center py-28 text-center">
-        <h1 className="font-display text-3xl text-cream">Algo saiu do lugar</h1>
-        <p className="mt-4 max-w-md text-base leading-relaxed text-muted">
+        <h1 className="font-display text-3xl text-ink-950">Algo saiu do lugar</h1>
+        <p className="mt-4 max-w-md text-base leading-relaxed text-ink-500">
           Tivemos um erro inesperado ao montar esta página. Recarregar costuma resolver.
         </p>
         <button

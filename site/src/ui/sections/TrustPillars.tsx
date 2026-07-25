@@ -28,7 +28,9 @@ const pillars = [
  */
 export function TrustPillars() {
   return (
-    <section className="border-y border-ink-700 bg-ink-900" aria-labelledby="confianca">
+    // Segundo bloco escuro da página. Responde a objeção de originalidade, que é
+    // a que trava a venda — o fundo invertido faz a seção parar o olho.
+    <section className="bg-ink-950 text-cream" aria-labelledby="confianca">
       <div className="container-brand py-20 sm:py-24">
         <h2 id="confianca" className="max-w-2xl font-display text-3xl text-cream sm:text-4xl">
           Comprar importado sem apostar na sorte

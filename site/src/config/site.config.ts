@@ -35,6 +35,11 @@ export const siteConfig = {
     number: whatsappNumber,
     isConfigured: whatsappNumber !== '',
   },
+  /**
+   * Número de parcelas exibido no card e na página do produto.
+   * É indicativo — a condição real é fechada no atendimento.
+   */
+  installments: 12,
 } as const
 
 export type SiteConfig = typeof siteConfig

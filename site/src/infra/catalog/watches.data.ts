@@ -124,7 +124,7 @@ export const demoWatches: readonly Watch[] = [
     },
     hasBoxAndPapers: true,
     warrantyMonths: 60,
-    featured: false,
+    featured: true,
   },
   {
     id: 'iwc-portugieser-chronograph',

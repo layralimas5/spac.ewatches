@@ -7,19 +7,19 @@ import { buttonStyles } from '@/ui/components/Button'
 import { ArrowRightIcon } from '@/ui/components/icons'
 
 export function FeaturedWatches() {
-  const state = useFeaturedWatches(3)
+  const state = useFeaturedWatches(4)
 
   return (
     <section className="container-brand py-20 sm:py-24" aria-labelledby="destaques">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="eyebrow text-gold-500">Seleção</p>
-          <h2 id="destaques" className="mt-3 font-display text-3xl text-cream sm:text-4xl">
+          <p className="eyebrow text-gold-700">Seleção</p>
+          <h2 id="destaques" className="mt-3 font-display text-3xl text-ink-950 sm:text-4xl">
             Em destaque agora
           </h2>
         </div>
 
-        <Link to="/catalogo" className="inline-flex items-center gap-2 text-sm text-gold-400 hover:text-gold-500">
+        <Link to="/catalogo" className="inline-flex items-center gap-2 text-sm text-gold-700 hover:text-gold-600">
           Ver catálogo completo
           <ArrowRightIcon className="h-4 w-4" />
         </Link>
@@ -27,8 +27,8 @@ export function FeaturedWatches() {
 
       <div className="mt-10">
         {state.status === 'loading' && (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[0, 1, 2].map((index) => (
+          <div className="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
+            {[0, 1, 2, 3].map((index) => (
               <CardSkeleton key={index} />
             ))}
           </div>
@@ -40,7 +40,7 @@ export function FeaturedWatches() {
             title="Não consegui carregar os destaques"
             description="Algo falhou ao buscar o catálogo. Recarregue a página ou fale com a gente direto."
             action={
-              <Link to="/catalogo" className={buttonStyles('outline', 'md')}>
+              <Link to="/catalogo" className={buttonStyles('outline-light', 'md')}>
                 Ir para o catálogo
               </Link>
             }
@@ -60,7 +60,7 @@ export function FeaturedWatches() {
         )}
 
         {state.status === 'success' && state.data.length > 0 && (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
             {state.data.map((watch, index) => (
               <Reveal key={watch.id} delay={index * 0.08}>
                 <WatchCard watch={watch} priority={index === 0} />

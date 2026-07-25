@@ -27,14 +27,14 @@ export function WatchPhoto({ image, className, loading = 'lazy', sizes }: WatchP
       <div
         className={cn(
           'flex h-full w-full flex-col items-center justify-center gap-3',
-          'bg-gradient-to-br from-ink-800 to-ink-950',
+          'bg-gradient-to-br from-paper-alt to-paper-line',
           className,
         )}
         role="img"
         aria-label={image?.alt ?? 'Foto do relógio ainda não cadastrada'}
       >
-        <WatchIcon className="h-10 w-10 text-gold-600/50" />
-        <span className="eyebrow text-ink-700">Space Watches</span>
+        <WatchIcon className="h-10 w-10 text-gold-600/60" />
+        <span className="eyebrow text-ink-500/60">Space Watches</span>
       </div>
     )
   }

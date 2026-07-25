@@ -6,7 +6,13 @@
  * Qualquer mudança de marca começa lá e desce pra cá.
  */
 @theme {
-  /* Superfícies — escuro é a base da marca, não um "dark mode" opcional */
+  /*
+   * O site é claro por padrão. Blocos escuros (hero, pilares de confiança,
+   * rodapé) são exceções deliberadas — é o contraste entre os dois que dá o
+   * ritmo da página, e é por isso que o escuro não pode virar o fundo geral.
+   */
+
+  /* Superfícies escuras */
   --color-ink-950: #0d0d10;
   --color-ink-900: #16161a;
   --color-ink-800: #1d1d22;
@@ -16,13 +22,28 @@
   --color-gold-400: #dcbc6e;
   --color-gold-500: #c9a24c;
   --color-gold-600: #a8863a;
+  /* Dourado para TEXTO sobre fundo claro: o 600 dá só 3.3:1 no branco e
+     reprova em AA para tamanhos pequenos. Este fecha em ~4.9:1. */
+  --color-gold-700: #8a6d24;
 
-  /* Texto */
+  /* Texto sobre fundo escuro */
   --color-cream: #ffffff;
   --color-muted: #b8b8be;
 
-  /* Tipografia */
-  --font-display: 'Playfair Display', ui-serif, Georgia, serif;
+  /* Superfícies claras — o padrão do site */
+  --color-paper: #ffffff;
+  --color-paper-alt: #f7f7f5;
+  --color-paper-line: #e4e4e0;
+  /* Cinza de corpo sobre branco: contraste AA sem virar preto puro (7.2:1) */
+  --color-ink-500: #56565f;
+
+  /*
+   * Tipografia — sans-serif em tudo.
+   * A serifada saiu: o padrão de e-commerce brasileiro (a referência que a
+   * loja escolheu) é sans em título e corpo. `--font-display` continua
+   * existindo como papel semântico (títulos), não como "fonte com serifa".
+   */
+  --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   /* Ritmo de animação — sutil, nunca chamativo */
@@ -36,12 +57,24 @@
   }
 
   body {
-    background-color: var(--color-ink-950);
-    color: var(--color-cream);
+    background-color: var(--color-paper);
+    color: var(--color-ink-950);
     font-family: var(--font-sans);
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+  }
+
+  /*
+   * O preflight do Tailwind zera o peso dos títulos. Com fonte sans isso deixa
+   * tudo leve demais para um e-commerce, então o peso volta aqui.
+   */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 600;
+    letter-spacing: -0.015em;
   }
 
   /* Foco visível em tudo que é navegável — requisito de a11y, não enfeite */
@@ -84,4 +117,42 @@
   font-weight: 500;
   letter-spacing: 0.25em;
   text-transform: uppercase;
+}
+
+/*
+ * Faixa de destaques em loop infinito.
+ *
+ * A trilha contém a lista DUPLICADA e desliza até -50%: no instante em que a
+ * primeira cópia sai de cena, a segunda está exatamente onde a primeira
+ * começou, então o corte é invisível e o loop nunca "salta".
+ *
+ * Anima só `transform` — a propriedade que o navegador resolve na GPU, sem
+ * recalcular layout a cada frame.
+ */
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 45s linear infinite;
+  will-change: transform;
+}
+
+/* Parar no hover deixa quem quer ler um item conseguir ler. */
+.marquee-viewport:hover .marquee-track,
+.marquee-viewport:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }

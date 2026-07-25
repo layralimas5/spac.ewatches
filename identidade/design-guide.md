@@ -20,22 +20,32 @@
 - **Fundo alternativo / cards:** `#16161A` — um degrau acima do fundo, para separar card
   de página sem precisar de borda forte.
 
-- **Cor proibida:** qualquer cor saturada de varejo — vermelho de promoção, amarelo de
-  desconto, verde de "compre já". A marca vende relógio original importado; selo de
-  liquidação mata o posicionamento.
+- **Selo de desconto:** preto sólido (`#0D0D10`) com texto branco, no formato "30% OFF".
+
+  A referência de e-commerce usa vermelho/laranja aqui. Ficou em preto para não brigar
+  com o dourado da marca — o contraste continua forte e o card não vira panfleto de
+  liquidação. Se a loja quiser o vermelho de varejo, é uma linha em `WatchCard.tsx`.
+
+- **Cor a evitar:** verde de "compre já", amarelo de desconto e contador de urgência.
+  A marca vende relógio original importado; apelo de liquidação derruba o preço
+  percebido da peça.
 
 ---
 
 ## Tipografia
 
-*(Não informada pela marca — recomendação abaixo, ajustar se houver fonte oficial.)*
+*(Não informada pela marca — decisão de projeto, ajustar se houver fonte oficial.)*
 
-- **Títulos e destaques:** uma serifada elegante e de alto contraste, no espírito do
-  "Space" do logo. Sugestão: **Playfair Display** ou **Cormorant Garamond**.
+- **Tudo em sans-serif: Inter.** Título, corpo, botão e preço.
 
-- **Corpo, subtítulos e botões:** sans-serif neutra e legível. Sugestão: **Inter**.
+  A primeira versão usava serifada (Playfair) nos títulos. Saiu quando a loja
+  escolheu como referência o padrão de e-commerce brasileiro
+  (saintgermainbrand.com.br), que é sans em toda a página. Serifada dava ar de
+  editorial de luxo; sans lê melhor em grade densa de produto e em preço.
 
-- **Peso do título:** regular a medium. Título premium não precisa de bold pesado.
+- **Peso do título:** 600 (semibold), com `letter-spacing` levemente negativo.
+
+- **Preço:** 600. É a informação que o olho procura primeiro na grade.
 
 - **Detalhe da marca:** o logo usa **letter-spacing largo em caixa alta** ("W A T C H E S").
   Repetir esse tratamento em rótulos e categorias (`tracking-[0.25em]`, uppercase, tamanho
@@ -45,9 +55,17 @@
 
 ## Estilo geral
 
-Escuro, minimalista e caro. Muito respiro entre os blocos, pouca coisa por tela, produto
-como protagonista. Referência de acabamento: e-commerce de relógio de luxo — foto grande
-sobre fundo escuro, texto curto, preço sem grito.
+**Base clara com blocos escuros.** O site é branco; escuro é usado em pontos escolhidos
+— banner do topo, seção de confiança e rodapé. É a alternância entre os dois que dá
+ritmo à página.
+
+Referência escolhida pela loja: **saintgermainbrand.com.br** — e-commerce brasileiro
+convencional, branco, sans-serif, grade densa de produto com preço, desconto,
+parcelamento e botão de compra visíveis no card.
+
+Isso substituiu a primeira leitura (minimalista escuro tipo boutique de luxo). O dourado
+continua sendo cor de detalhe e CTA, e o escuro continua sendo a assinatura da marca —
+mas em faixas, não como fundo geral.
 
 ---
 
@@ -65,10 +83,11 @@ sobre fundo escuro, texto curto, preço sem grito.
 
 ## O que NUNCA fazer
 
-- Aplicar o logo sobre fundo claro sem uma versão adequada (ele é feito para fundo escuro).
-- Usar dourado como cor de fundo grande — é cor de detalhe.
-- Selos de promoção, contador de urgência estridente, badge vermelho.
-- Empilhar mais de duas famílias tipográficas.
+- Usar dourado como cor de fundo grande — é cor de detalhe e CTA.
+- Usar o dourado `#C9A24C` em **texto pequeno sobre branco**: dá 3,3:1 e reprova em
+  contraste AA. Para texto em fundo claro existe o `#8A6D24` (~4,9:1).
+- Contador de urgência estridente e apelo de liquidação.
+- Empilhar mais de uma família tipográfica — é tudo Inter.
 
 ---
 

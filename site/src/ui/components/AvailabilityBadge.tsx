@@ -8,8 +8,9 @@ const label: Record<Availability, string> = {
 
 const style: Record<Availability, string> = {
   // Dourado discreto marca o que sai rápido, sem virar selo de promoção.
-  'pronta-entrega': 'border-gold-600/40 bg-gold-500/10 text-gold-400',
-  'sob-encomenda': 'border-ink-700 bg-ink-900 text-muted',
+  // Fundo sólido porque o selo fica sobre a foto do produto, não sobre o card.
+  'pronta-entrega': 'border-gold-600/40 bg-paper text-gold-700',
+  'sob-encomenda': 'border-paper-line bg-paper text-ink-500',
 }
 
 export function AvailabilityBadge({

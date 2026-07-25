@@ -71,6 +71,17 @@ export function isDiscounted(watch: Watch): boolean {
   return watch.previousPrice !== undefined && watch.previousPrice > watch.price
 }
 
+/**
+ * Desconto em pontos percentuais inteiros, arredondado para baixo.
+ *
+ * Para baixo de propósito: anunciar 30% quando o desconto real é 29,7% é
+ * propaganda enganosa por arredondamento. `null` quando não há desconto.
+ */
+export function discountPercent(watch: Watch): number | null {
+  if (watch.previousPrice === undefined || watch.previousPrice <= watch.price) return null
+  return Math.floor(((watch.previousPrice - watch.price) / watch.previousPrice) * 100)
+}
+
 export function matchesFilters(watch: Watch, filters: CatalogFilters): boolean {
   if (filters.brand !== undefined && watch.brand !== filters.brand) return false
   if (filters.availability !== undefined && watch.availability !== filters.availability) return false

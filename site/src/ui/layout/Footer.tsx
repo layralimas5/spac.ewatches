@@ -8,10 +8,10 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="mt-24 border-t border-ink-700 bg-ink-950">
+    <footer className="bg-ink-950 text-cream">
       <div className="container-brand grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2">
-          <Logo />
+          <Logo tone="dark" />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
             Relógios importados originais, com caixa e documentos. E o modelo que você quer,
             trazido sob encomenda.

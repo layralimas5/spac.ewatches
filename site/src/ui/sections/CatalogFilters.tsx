@@ -38,8 +38,8 @@ const sortOptions: ReadonlyArray<{ value: CatalogSort; label: string }> = [
 ]
 
 const fieldClass =
-  'h-11 w-full rounded-lg border border-ink-700 bg-ink-900 px-3 text-sm text-cream ' +
-  'transition-colors hover:border-ink-700 focus:border-gold-600'
+  'h-11 w-full rounded-lg border border-paper-line bg-paper px-3 text-sm text-ink-950 ' +
+  'placeholder:text-ink-500/70 transition-colors hover:border-ink-500/40 focus:border-gold-600'
 
 export function CatalogFilters({
   values,
@@ -51,14 +51,14 @@ export function CatalogFilters({
   const brands = useBrands()
 
   return (
-    <div className="rounded-xl border border-ink-700 bg-ink-900/60 p-5">
+    <div className="rounded-xl border border-paper-line bg-paper-alt p-5 sm:p-6">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          <label htmlFor="busca" className="eyebrow text-muted">
+          <label htmlFor="busca" className="eyebrow text-ink-500">
             Buscar
           </label>
           <div className="relative mt-2">
-            <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
+            <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-500" />
             <input
               id="busca"
               type="search"
@@ -71,7 +71,7 @@ export function CatalogFilters({
         </div>
 
         <div>
-          <label htmlFor="marca" className="eyebrow text-muted">
+          <label htmlFor="marca" className="eyebrow text-ink-500">
             Marca
           </label>
           <select
@@ -91,7 +91,7 @@ export function CatalogFilters({
         </div>
 
         <div>
-          <label htmlFor="ordenar" className="eyebrow text-muted">
+          <label htmlFor="ordenar" className="eyebrow text-ink-500">
             Ordenar por
           </label>
           <select
@@ -109,7 +109,7 @@ export function CatalogFilters({
         </div>
 
         <div>
-          <label htmlFor="disponibilidade" className="eyebrow text-muted">
+          <label htmlFor="disponibilidade" className="eyebrow text-ink-500">
             Disponibilidade
           </label>
           <select
@@ -127,7 +127,7 @@ export function CatalogFilters({
         </div>
 
         <div>
-          <label htmlFor="condicao" className="eyebrow text-muted">
+          <label htmlFor="condicao" className="eyebrow text-ink-500">
             Condição
           </label>
           <select
@@ -145,9 +145,9 @@ export function CatalogFilters({
         </div>
       </div>
 
-      <div className="mt-5 flex items-center justify-between gap-4 border-t border-ink-700 pt-4">
+      <div className="mt-5 flex items-center justify-between gap-4 border-t border-paper-line pt-4">
         {/* Região viva: quem usa leitor de tela ouve a contagem mudar sem precisar procurar. */}
-        <p className="text-sm text-muted" role="status" aria-live="polite">
+        <p className="text-sm text-ink-500" role="status" aria-live="polite">
           {resultCount === 1 ? '1 relógio encontrado' : `${resultCount} relógios encontrados`}
         </p>
 
@@ -155,7 +155,7 @@ export function CatalogFilters({
           <button
             type="button"
             onClick={onClear}
-            className="text-sm text-gold-400 transition-colors hover:text-gold-500"
+            className="text-sm text-gold-700 transition-colors hover:text-gold-600"
           >
             Limpar filtros
           </button>

@@ -1,6 +1,6 @@
 import { cn } from '@/lib/cn'
 
-export type ButtonVariant = 'primary' | 'outline' | 'ghost'
+export type ButtonVariant = 'primary' | 'outline' | 'ghost' | 'outline-light' | 'ghost-light'
 export type ButtonSize = 'md' | 'lg'
 
 const base =
@@ -12,6 +12,9 @@ const variants: Record<ButtonVariant, string> = {
   primary: 'bg-gold-500 text-ink-950 hover:bg-gold-400',
   outline: 'border border-gold-600 text-gold-400 hover:bg-gold-500/10',
   ghost: 'text-muted hover:text-cream',
+  // Variantes para fundo claro — o dourado claro e o `muted` somem no branco.
+  'outline-light': 'border border-gold-600 text-gold-700 hover:bg-gold-500/10',
+  'ghost-light': 'text-ink-500 hover:text-ink-950',
 }
 
 const sizes: Record<ButtonSize, string> = {

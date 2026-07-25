@@ -1,5 +1,7 @@
 import { Seo } from '@/ui/components/Seo'
-import { Hero } from '@/ui/sections/Hero'
+import { BannerCarousel } from '@/ui/sections/BannerCarousel'
+import { HighlightsMarquee } from '@/ui/components/HighlightsMarquee'
+import { BrandGrid } from '@/ui/sections/BrandGrid'
 import { FeaturedWatches } from '@/ui/sections/FeaturedWatches'
 import { TrustPillars } from '@/ui/sections/TrustPillars'
 import { CustomImportCta } from '@/ui/sections/CustomImportCta'
@@ -16,7 +18,9 @@ export default function HomePage() {
         structuredData={storeStructuredData()}
       />
 
-      <Hero />
+      <BannerCarousel />
+      <HighlightsMarquee />
+      <BrandGrid />
       <FeaturedWatches />
       <TrustPillars />
       <CustomImportCta />

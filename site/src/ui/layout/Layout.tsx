@@ -2,18 +2,22 @@ import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Header } from './Header'
 import { Footer } from './Footer'
+import { cn } from '@/lib/cn'
 
 /** Volta ao topo a cada navegação — sem isso a página nova abre na rolagem antiga. */
-function useScrollToTopOnNavigate() {
-  const { pathname } = useLocation()
-
+function useScrollToTopOnNavigate(pathname: string) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
   }, [pathname])
 }
 
 export function Layout() {
-  useScrollToTopOnNavigate()
+  const { pathname } = useLocation()
+  useScrollToTopOnNavigate(pathname)
+
+  // O header é `fixed` para o banner da home passar por baixo dele. Quem não
+  // tem banner precisa compensar a altura, senão o conteúdo nasce escondido.
+  const isHome = pathname === '/'
 
   return (
     <div className="flex min-h-dvh flex-col">
@@ -26,7 +30,7 @@ export function Layout() {
 
       <Header />
 
-      <main id="conteudo" className="flex-1">
+      <main id="conteudo" className={cn('flex-1', !isHome && 'pt-18')}>
         <Outlet />
       </main>
 
