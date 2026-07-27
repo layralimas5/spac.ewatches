@@ -1,0 +1,38 @@
+# Deploy do site da Space Watches no Netlify.
+#
+# O repositório guarda o workspace inteiro (memória, marketing, identidade), e o
+# site é só a pasta `site/`. Por isso o `base`: sem ele o Netlify tentaria
+# instalar e buildar a partir da raiz, onde não existe `package.json`.
+
+[build]
+  base = "site"
+  command = "npm run build"
+  # Relativo ao `base`, ou seja, `site/dist`.
+  publish = "dist"
+
+[build.environment]
+  # A mesma versão usada no desenvolvimento. O `prebuild` roda um script `.ts`
+  # direto no Node, o que exige uma versão recente.
+  NODE_VERSION = "24"
+
+# Os arquivos de `assets/` levam hash no nome: mudou o conteúdo, muda o nome.
+# Podem ficar no cache do navegador para sempre, sem risco de servir versão velha.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Fotos e banners não têm hash no nome, então o cache é curto o bastante para
+# uma troca de arte aparecer no mesmo dia, e longo o bastante para não repetir
+# download a cada página.
+[[headers]]
+  for = "/catalogo/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/banners/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# O redirecionamento de SPA fica em `site/public/_redirects`, junto do site.
