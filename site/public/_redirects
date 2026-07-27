@@ -1,3 +1,3 @@
 # Netlify: SPA. Sem isso, abrir /catalogo direto ou dar F5 numa rota interna dá 404,
-# porque o arquivo não existe no disco — quem resolve a rota é o React Router.
+# porque o arquivo não existe no disco, quem resolve a rota é o React Router.
 /*  /index.html  200
