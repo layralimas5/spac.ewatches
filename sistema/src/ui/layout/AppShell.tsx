@@ -1,16 +1,21 @@
 import { useEffect, useState, type ComponentType, type SVGProps } from 'react'
-import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { useSession } from '@/application/use-settings'
+import { sessionStore } from '@/infra'
 import { cn } from '@/lib/cn'
+import { Topbar } from './Topbar'
 import {
   BoxIcon,
   CartIcon,
   CloseIcon,
   DashboardIcon,
-  MenuIcon,
+  LogoutIcon,
+  SettingsIcon,
   TruckIcon,
   UsersIcon,
   WalletIcon,
 } from '@/ui/components/icons'
+import { LockScreen } from '@/ui/pages/LockScreen'
 
 interface NavItem {
   readonly to: string
@@ -18,7 +23,7 @@ interface NavItem {
   readonly icon: ComponentType<SVGProps<SVGSVGElement>>
 }
 
-const navigation: readonly NavItem[] = [
+const mainNavigation: readonly NavItem[] = [
   { to: '/', label: 'Painel', icon: DashboardIcon },
   { to: '/estoque', label: 'Estoque', icon: BoxIcon },
   { to: '/pedidos', label: 'Pedidos', icon: CartIcon },
@@ -27,34 +32,11 @@ const navigation: readonly NavItem[] = [
   { to: '/financeiro', label: 'Financeiro', icon: WalletIcon },
 ]
 
-function NavItems({ onNavigate }: { readonly onNavigate?: () => void }) {
-  return (
-    <nav aria-label="Navegação principal">
-      <ul className="list-none space-y-1">
-        {navigation.map((item) => (
-          <li key={item.to}>
-            <NavLink
-              to={item.to}
-              end={item.to === '/'}
-              onClick={onNavigate}
-              className={({ isActive }) =>
-                cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors',
-                  isActive
-                    ? 'bg-cream/10 font-medium text-cream'
-                    : 'text-muted hover:bg-cream/5 hover:text-cream',
-                )
-              }
-            >
-              <item.icon className="h-5 w-5 shrink-0" />
-              {item.label}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </nav>
+const linkClass = ({ isActive }: { isActive: boolean }) =>
+  cn(
+    'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors',
+    isActive ? 'bg-cream/10 font-medium text-cream' : 'text-muted hover:bg-cream/5 hover:text-cream',
   )
-}
 
 function Brand() {
   return (
@@ -67,8 +49,59 @@ function Brand() {
   )
 }
 
+function SidebarContent({ onNavigate }: { readonly onNavigate?: () => void }) {
+  const navigate = useNavigate()
+
+  const leave = () => {
+    onNavigate?.()
+    sessionStore.set(false)
+    navigate('/')
+  }
+
+  return (
+    <>
+      <nav aria-label="Navegação principal" className="flex-1">
+        <ul className="list-none space-y-1">
+          {mainNavigation.map((item) => (
+            <li key={item.to}>
+              <NavLink to={item.to} end={item.to === '/'} onClick={onNavigate} className={linkClass}>
+                <item.icon className="h-5 w-5 shrink-0" />
+                {item.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* Ajustes e saída ficam separados do resto: são o fim da lista em
+          qualquer sistema, e misturá-los com as telas de trabalho confunde. */}
+      <div className="border-t border-cream/10 pt-3">
+        <ul className="list-none space-y-1">
+          <li>
+            <NavLink to="/configuracoes" onClick={onNavigate} className={linkClass}>
+              <SettingsIcon className="h-5 w-5 shrink-0" />
+              Configurações
+            </NavLink>
+          </li>
+          <li>
+            <button
+              type="button"
+              onClick={leave}
+              className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-muted transition-colors hover:bg-cream/5 hover:text-cream"
+            >
+              <LogoutIcon className="h-5 w-5 shrink-0" />
+              Sair
+            </button>
+          </li>
+        </ul>
+      </div>
+    </>
+  )
+}
+
 /**
- * Moldura do sistema: menu fixo à esquerda no desktop, gaveta no celular.
+ * Moldura do sistema: menu fixo à esquerda no desktop, gaveta no celular, e a
+ * barra do topo com notificações e conta.
  *
  * O menu é escuro e o conteúdo claro de propósito: separa "onde eu estou" de
  * "o que eu estou fazendo" sem precisar de linha divisória nem de cor de marca.
@@ -76,9 +109,12 @@ function Brand() {
 export function AppShell() {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
+  const hasSession = useSession()
 
   // Trocou de tela, fecha a gaveta: no celular ela cobre o conteúdo inteiro.
   useEffect(() => setMenuOpen(false), [location.pathname])
+
+  if (!hasSession) return <LockScreen />
 
   return (
     <div className="min-h-dvh lg:flex">
@@ -89,27 +125,10 @@ export function AppShell() {
         Ir para o conteúdo
       </a>
 
-      {/* Menu fixo do desktop */}
-      <aside className="on-dark hidden w-60 shrink-0 flex-col gap-8 bg-ink-950 p-5 lg:sticky lg:top-0 lg:flex lg:h-dvh">
+      <aside className="on-dark hidden w-60 shrink-0 flex-col gap-6 bg-ink-950 p-5 lg:sticky lg:top-0 lg:flex lg:h-dvh">
         <Brand />
-        <NavItems />
-        <p className="mt-auto text-xs leading-relaxed text-ink-400">
-          Dados guardados neste navegador. Antes de publicar, ligue o Supabase.
-        </p>
+        <SidebarContent />
       </aside>
-
-      {/* Barra do celular */}
-      <header className="on-dark sticky top-0 z-30 flex items-center gap-3 bg-ink-950 px-4 py-3 lg:hidden">
-        <button
-          type="button"
-          onClick={() => setMenuOpen(true)}
-          aria-label="Abrir menu"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-cream"
-        >
-          <MenuIcon className="h-6 w-6" />
-        </button>
-        <Brand />
-      </header>
 
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
@@ -119,7 +138,7 @@ export function AppShell() {
             onClick={() => setMenuOpen(false)}
             className="absolute inset-0 bg-ink-950/60"
           />
-          <div className="on-dark relative flex h-full w-72 max-w-[80%] flex-col gap-8 bg-ink-950 p-5">
+          <div className="on-dark relative flex h-full w-72 max-w-[80%] flex-col gap-6 bg-ink-950 p-5">
             <div className="flex items-center justify-between">
               <Brand />
               <button
@@ -131,16 +150,20 @@ export function AppShell() {
                 <CloseIcon className="h-5 w-5" />
               </button>
             </div>
-            <NavItems onNavigate={() => setMenuOpen(false)} />
+            <SidebarContent onNavigate={() => setMenuOpen(false)} />
           </div>
         </div>
       )}
 
-      <main id="conteudo" className="flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-        <div className="mx-auto max-w-6xl space-y-6">
-          <Outlet />
-        </div>
-      </main>
+      <div className="flex min-w-0 flex-1 flex-col">
+        <Topbar onOpenMenu={() => setMenuOpen(true)} />
+
+        <main id="conteudo" className="flex-1 px-4 py-6 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-6xl space-y-6">
+            <Outlet />
+          </div>
+        </main>
+      </div>
     </div>
   )
 }

@@ -12,6 +12,7 @@ const PedidosPage = lazy(() => import('@/ui/pages/PedidosPage'))
 const ClientesPage = lazy(() => import('@/ui/pages/ClientesPage'))
 const EntregasPage = lazy(() => import('@/ui/pages/EntregasPage'))
 const FinanceiroPage = lazy(() => import('@/ui/pages/FinanceiroPage'))
+const ConfiguracoesPage = lazy(() => import('@/ui/pages/ConfiguracoesPage'))
 
 function Loading() {
   return (
@@ -69,6 +70,14 @@ export default function App() {
           element={
             <Lazy>
               <FinanceiroPage />
+            </Lazy>
+          }
+        />
+        <Route
+          path="configuracoes"
+          element={
+            <Lazy>
+              <ConfiguracoesPage />
             </Lazy>
           }
         />

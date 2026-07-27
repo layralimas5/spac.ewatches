@@ -6,6 +6,7 @@
  */
 export { newId } from './store'
 export type { Store } from './store'
+export type { ValueStore } from './value-store'
 export {
   customerStore,
   deliveryStore,
@@ -13,4 +14,6 @@ export {
   orderStore,
   productStore,
   resetAll,
+  sessionStore,
+  settingsStore,
 } from './stores'

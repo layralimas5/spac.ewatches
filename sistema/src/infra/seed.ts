@@ -44,6 +44,25 @@ export const seedProducts: readonly Product[] = [
     stock: 1,
     minStock: 1,
     supplier: 'Fornecedor Miami',
+    site: {
+      published: true,
+      section: 'destaque',
+      availability: 'pronta-entrega',
+      shortDescription: 'O clássico que nunca sai de linha, em aço com bezel canelado.',
+      description: 'O Datejust 41 é o relógio que define o que é um relógio de vestir moderno. Caixa em aço Oystersteel, bezel canelado em ouro branco 18k e pulseira Jubilee. Acompanha caixa e documentos originais.',
+      imageUrl: '/catalogo/rolex-datejust-41.webp',
+      imageAlt: 'Rolex Datejust 41 com pulseira Jubilee e mostrador azul',
+      specs: {
+        movement: 'Automático, calibre 3235',
+        caseMaterial: 'Aço Oystersteel e ouro branco 18k',
+        caseSizeMm: 41,
+        glass: 'Safira',
+        waterResistance: '100 metros',
+        bracelet: 'Jubilee em aço'
+      },
+      warrantyMonths: 24,
+      hasBoxAndPapers: true
+    },
     createdAt: daysAgo(48),
   },
   {
@@ -59,6 +78,25 @@ export const seedProducts: readonly Product[] = [
     stock: 2,
     minStock: 1,
     supplier: 'Fornecedor Miami',
+    site: {
+      published: true,
+      section: 'destaque',
+      availability: 'pronta-entrega',
+      shortDescription: 'O cronógrafo que foi à Lua, com corda manual e vidro Hesalite.',
+      description: 'O Moonwatch mantém a construção que a NASA aprovou: cronógrafo de corda manual, mostrador preto e taquímetro no bezel. Peça de coleção que se usa todo dia.',
+      imageUrl: '/catalogo/omega-speedmaster.webp',
+      imageAlt: 'Omega Speedmaster Professional Moonwatch com mostrador preto e pulseira de couro',
+      specs: {
+        movement: 'Corda manual, calibre 3861 Co-Axial',
+        caseMaterial: 'Aço inoxidável',
+        caseSizeMm: 42,
+        glass: 'Hesalite',
+        waterResistance: '50 metros',
+        bracelet: 'Couro preto'
+      },
+      warrantyMonths: 60,
+      hasBoxAndPapers: true
+    },
     createdAt: daysAgo(40),
   },
   {
@@ -74,6 +112,25 @@ export const seedProducts: readonly Product[] = [
     stock: 0,
     minStock: 1,
     notes: 'Peça sob encomenda, prazo de 30 dias com o fornecedor.',
+    site: {
+      published: true,
+      section: 'catalogo',
+      availability: 'sob-encomenda',
+      shortDescription: 'Caixa quadrada, parafusos aparentes e troca de pulseira sem ferramenta.',
+      description: 'O Santos é o relógio de pulso como conhecemos hoje. O sistema QuickSwitch troca a pulseira sem ferramenta nenhuma.',
+      imageUrl: '/catalogo/cartier-santos.webp',
+      imageAlt: 'Santos de Cartier médio em aço com mostrador verde e algarismos romanos',
+      specs: {
+        movement: 'Automático, calibre 1847 MC',
+        caseMaterial: 'Aço inoxidável',
+        caseSizeMm: 35,
+        glass: 'Safira',
+        waterResistance: '100 metros',
+        bracelet: 'Aço com QuickSwitch'
+      },
+      warrantyMonths: 24,
+      hasBoxAndPapers: true
+    },
     createdAt: daysAgo(33),
   },
   {
@@ -89,6 +146,25 @@ export const seedProducts: readonly Product[] = [
     stock: 1,
     minStock: 1,
     supplier: 'Parceiro São Paulo',
+    site: {
+      published: true,
+      section: 'pronta-entrega',
+      availability: 'pronta-entrega',
+      shortDescription: 'Mergulhador vintage de 39mm, o tamanho que caiu no gosto de todo mundo.',
+      description: 'O Black Bay 58 acertou onde muito mergulhador erra: 39mm e perfil baixo, cabe embaixo da manga. Certificação COSC e 70 horas de reserva de marcha.',
+      imageUrl: '/catalogo/tudor-black-bay-58.webp',
+      imageAlt: 'Tudor Black Bay 58 azul marinho com pulseira de aço',
+      specs: {
+        movement: 'Automático, calibre MT5402 (COSC)',
+        caseMaterial: 'Aço inoxidável',
+        caseSizeMm: 39,
+        glass: 'Safira',
+        waterResistance: '200 metros',
+        bracelet: 'Aço inoxidável'
+      },
+      warrantyMonths: 60,
+      hasBoxAndPapers: true
+    },
     createdAt: daysAgo(27),
   },
   {
@@ -104,6 +180,25 @@ export const seedProducts: readonly Product[] = [
     stock: 1,
     minStock: 1,
     notes: 'Comprado de cliente, com caixa e documentos.',
+    site: {
+      published: true,
+      section: 'pronta-entrega',
+      availability: 'pronta-entrega',
+      shortDescription: 'Cronógrafo de mostrador limpo, com movimento de manufatura.',
+      description: 'Portugieser Chronograph em estado de novo, com pouquíssimo uso. Calibre de manufatura 69355 visível pelo fundo.',
+      imageUrl: '/catalogo/iwc-portugieser.webp',
+      imageAlt: 'IWC Portugieser Chronograph em ouro rosé, com mostrador azul e pulseira de couro preta',
+      specs: {
+        movement: 'Automático, calibre 69355 de manufatura',
+        caseMaterial: 'Ouro rosé 18k',
+        caseSizeMm: 41,
+        glass: 'Safira com tratamento antirreflexo',
+        waterResistance: '30 metros',
+        bracelet: 'Couro de bezerro'
+      },
+      warrantyMonths: 12,
+      hasBoxAndPapers: true
+    },
     createdAt: daysAgo(21),
   },
   {
@@ -119,6 +214,25 @@ export const seedProducts: readonly Product[] = [
     stock: 3,
     minStock: 1,
     supplier: 'Fornecedor Tóquio',
+    site: {
+      published: true,
+      section: 'catalogo',
+      availability: 'sob-encomenda',
+      shortDescription: 'O mostrador texturizado e o ponteiro que desliza sem tique-taque.',
+      description: 'O Snowflake é famoso por duas coisas: o mostrador texturizado e o Spring Drive, movimento em que o ponteiro dos segundos desliza contínuo, sem salto. Caixa em titânio de alta intensidade.',
+      imageUrl: '/catalogo/grand-seiko-snowflake.webp',
+      imageAlt: 'Grand Seiko Snowflake com mostrador texturizado em rosa claro e pulseira de titânio',
+      specs: {
+        movement: 'Spring Drive, calibre 9R65',
+        caseMaterial: 'Titânio de alta intensidade',
+        caseSizeMm: 41,
+        glass: 'Safira com antirreflexo',
+        waterResistance: '100 metros',
+        bracelet: 'Titânio'
+      },
+      warrantyMonths: 36,
+      hasBoxAndPapers: true
+    },
     createdAt: daysAgo(16),
   },
   {
@@ -134,6 +248,25 @@ export const seedProducts: readonly Product[] = [
     stock: 2,
     minStock: 1,
     supplier: 'Parceiro São Paulo',
+    site: {
+      published: true,
+      section: 'catalogo',
+      availability: 'pronta-entrega',
+      shortDescription: 'Cronógrafo de corrida com movimento de manufatura e 80h de reserva.',
+      description: 'A Carrera nasceu para corrida e continua com a leitura mais direta do segmento. Calibre Heuer 02 de manufatura, com 80 horas de reserva de marcha e fundo transparente.',
+      imageUrl: '/catalogo/tag-heuer-carrera.webp',
+      imageAlt: 'TAG Heuer Carrera Chronograph com mostrador azul, detalhes em laranja e pulseira de couro azul',
+      specs: {
+        movement: 'Automático, calibre Heuer 02',
+        caseMaterial: 'Aço inoxidável',
+        caseSizeMm: 44,
+        glass: 'Safira',
+        waterResistance: '100 metros',
+        bracelet: 'Couro azul'
+      },
+      warrantyMonths: 24,
+      hasBoxAndPapers: true
+    },
     createdAt: daysAgo(12),
   },
   {
@@ -149,6 +282,25 @@ export const seedProducts: readonly Product[] = [
     stock: 4,
     minStock: 2,
     supplier: 'Fornecedor Miami',
+    site: {
+      published: false,
+      section: 'catalogo',
+      availability: 'pronta-entrega',
+      shortDescription: 'Entrada no automático suíço com acabamento de peça bem mais cara.',
+      description: 'A Master Collection é a porta de entrada mais honesta pro relógio suíço automático: mostrador com guilhochê, ponteiros azulados e movimento com espiral de silício.',
+      imageUrl: '/catalogo/longines-master.webp',
+      imageAlt: 'Longines Master Collection com mostrador prateado, ponteiros azulados e pulseira de couro azul',
+      specs: {
+        movement: 'Automático, calibre L888.4',
+        caseMaterial: 'Aço inoxidável',
+        caseSizeMm: 40,
+        glass: 'Safira com antirreflexo',
+        waterResistance: '30 metros',
+        bracelet: 'Couro de jacaré azul'
+      },
+      warrantyMonths: 60,
+      hasBoxAndPapers: true
+    },
     createdAt: daysAgo(9),
   },
 ]
