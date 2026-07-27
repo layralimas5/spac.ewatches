@@ -1,0 +1,27 @@
+# Deploy do sistema de gestão.
+#
+# É um site separado do da loja, no mesmo repositório. Ao criar o site no
+# Netlify, aponte o "base directory" para `sistema`, e este arquivo passa a ser
+# o usado no lugar do `netlify.toml` da raiz.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# Ferramenta interna: fora de buscador, sempre. O `noindex` do HTML só vale
+# para quem lê a página; o cabeçalho vale também para o robô que não a lê.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

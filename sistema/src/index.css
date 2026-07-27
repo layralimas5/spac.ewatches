@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+/*
+ * Sistema de gestão da Space Watches.
+ *
+ * Mesma base visual do site (preto, branco e cinza, fonte Inter), com uma
+ * diferença de propósito: aqui entram cores de status. Numa loja o vermelho
+ * quebra o posicionamento; num painel de trabalho, ele é o que faz o atraso
+ * saltar aos olhos antes do café esfriar.
+ */
+@theme {
+  --color-ink-950: #0a0a0a;
+  --color-ink-900: #171717;
+  --color-ink-800: #262626;
+  --color-ink-700: #404040;
+  --color-ink-500: #525252;
+  --color-ink-400: #737373;
+  --color-ink-300: #a3a3a3;
+
+  --color-cream: #ffffff;
+  --color-muted: #a3a3a3;
+
+  --color-paper: #ffffff;
+  --color-paper-alt: #f7f7f7;
+  --color-paper-line: #e5e5e5;
+
+  /* Status. Todos passam AA com texto branco por cima. */
+  --color-positive: #15803d;
+  --color-negative: #b91c1c;
+  --color-attention: #a16207;
+  --color-info: #1d4ed8;
+
+  /* Fundos claros dos selos, para texto escuro por cima. */
+  --color-positive-soft: #dcfce7;
+  --color-negative-soft: #fee2e2;
+  --color-attention-soft: #fef3c7;
+  --color-info-soft: #dbeafe;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper-alt);
+    color: var(--color-ink-950);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  /* Foco visível em tudo que é navegável: requisito de a11y, não enfeite. */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-ink-950);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .on-dark :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline-color: var(--color-cream);
+  }
+
+  /*
+   * O Safari do iPhone dá zoom sozinho ao focar campo com fonte menor que 16px.
+   * Num sistema cheio de formulário, isso deixa a tela torta o tempo todo.
+   */
+  @media (width < 40rem) {
+    input,
+    select,
+    textarea {
+      font-size: 16px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Números em tabela: dígitos com a mesma largura alinham as colunas de valor. */
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
