@@ -1,3 +1,0 @@
-# SPA: quem resolve a rota é o React Router, e o arquivo não existe no disco.
-# Sem isso, abrir /estoque direto ou dar F5 numa tela interna dá 404.
-/*  /index.html  200
