@@ -16,7 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Paths — relativos a este tsconfig; `baseUrl` foi depreciado no TS 6 */
+    /* Paths: relativos a este tsconfig; `baseUrl` foi depreciado no TS 6 */
     "paths": {
       "@/*": ["./src/*"]
     },
