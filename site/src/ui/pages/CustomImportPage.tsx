@@ -5,6 +5,12 @@ import { buttonStyles } from '@/ui/components/Button'
 import { ArrowRightIcon, WhatsAppIcon } from '@/ui/components/icons'
 import { contactChannelLabel, customImportLink } from '@/lib/whatsapp'
 
+/**
+ * Amplitude menor que a do card: o botão é um alvo pequeno, e um pulsar largo
+ * demais deslocaria a borda o suficiente para o cursor escapar do hover.
+ */
+const buttonPulse = 'hover-pulse [--pulse-scale:1.03]'
+
 const steps = [
   {
     number: '01',
@@ -80,12 +86,12 @@ export default function CustomImportPage() {
               href={customImportLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className={buttonStyles('primary', 'lg')}
+              className={buttonStyles('primary', 'lg', buttonPulse)}
             >
               <WhatsAppIcon className="h-5 w-5" />
               {`Pedir cotação no ${contactChannelLabel()}`}
             </a>
-            <Link to="/catalogo" className={buttonStyles('ghost', 'lg')}>
+            <Link to="/catalogo" className={buttonStyles('ghost', 'lg', buttonPulse)}>
               Ver o que já temos
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
@@ -99,13 +105,20 @@ export default function CustomImportPage() {
 
           <ol className="mt-10 grid list-none gap-6 sm:grid-cols-2">
             {steps.map((step, index) => (
-              <Reveal key={step.number} delay={index * 0.08}>
-                <li className="h-full rounded-xl border border-paper-line bg-paper-alt p-6">
-                  <span className="font-display text-2xl text-ink-500" aria-hidden="true">
-                    {step.number}
-                  </span>
-                  <h3 className="mt-3 font-display text-lg text-ink-950">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-500">{step.description}</p>
+              <Reveal key={step.number} delay={index * 0.08} className="h-full">
+                {/*
+                 * O `li` é só a área de hover, de tamanho fixo. Quem pulsa é o
+                 * cartão de dentro, senão a borda passaria por baixo do cursor a
+                 * cada ciclo e a animação ficaria piscando.
+                 */}
+                <li className="group h-full">
+                  <div className="hover-pulse h-full rounded-xl border border-paper-line bg-paper-alt p-6 [--pulse-scale:1.02]">
+                    <span className="font-display text-2xl text-ink-500" aria-hidden="true">
+                      {step.number}
+                    </span>
+                    <h3 className="mt-3 font-display text-lg text-ink-950">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-500">{step.description}</p>
+                  </div>
                 </li>
               </Reveal>
             ))}
@@ -136,7 +149,7 @@ export default function CustomImportPage() {
             href={customImportLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${buttonStyles('primary', 'lg')} mt-8`}
+            className={buttonStyles('primary', 'lg', `${buttonPulse} mt-8`)}
           >
             <WhatsAppIcon className="h-5 w-5" />
             {`Pedir cotação no ${contactChannelLabel()}`}

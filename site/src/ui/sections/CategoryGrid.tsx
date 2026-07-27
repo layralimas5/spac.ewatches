@@ -39,7 +39,7 @@ export function CategoryGrid() {
                 tamanho de uma unha. O corte fecha no mostrador, que é o que
                 identifica a marca de relance.
               */}
-              <span className="hover-pulse flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-paper-line bg-paper-alt transition-colors group-hover:border-ink-950 sm:h-28 sm:w-28">
+              <span className="hover-pulse flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-paper-line bg-paper-alt transition-colors [--pulse-scale:1.07] group-hover:border-ink-950 sm:h-28 sm:w-28">
                 {category.image !== undefined ? (
                   <WatchPhoto image={category.image} sizes="112px" className="scale-[1.15]" />
                 ) : (

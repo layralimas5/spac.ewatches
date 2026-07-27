@@ -32,7 +32,10 @@ export function WideBanner() {
         // Com texto por cima, a foto vira ilustração: o nome do link já vem do
         // título, e repetir a descrição da imagem só alonga a leitura.
         alt={hasText ? '' : (imageAlt ?? '')}
-        className="h-full w-full object-cover object-[50%_35%] transition-transform duration-700 ease-brand group-hover:scale-110 motion-reduce:transform-none"
+        // Zoom curto de propósito: numa foto que ocupa a largura toda, 10% de
+        // aproximação vira um salto. 4% dá o sinal de "isto é clicável" sem
+        // sacudir a página.
+        className="h-full w-full object-cover object-[50%_35%] transition-transform duration-700 ease-brand group-hover:scale-[1.04] motion-reduce:transform-none"
         loading="lazy"
         decoding="async"
       />

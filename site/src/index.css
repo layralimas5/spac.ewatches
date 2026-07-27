@@ -189,7 +189,9 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.035);
+    /* A amplitude é regulável por elemento: a foto grande do card precisa de
+       menos do que o círculo pequeno da categoria para o movimento ser lido. */
+    transform: scale(var(--pulse-scale, 1.035));
   }
 }
 
