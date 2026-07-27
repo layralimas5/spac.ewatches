@@ -34,7 +34,7 @@ export class InvalidPostalCodeError extends Error {
   }
 }
 
-/** Deixa só os dígitos — o cliente digita com hífen, com espaço, como vier. */
+/** Deixa só os dígitos, o cliente digita com hífen, com espaço, como vier. */
 export function normalizePostalCode(input: string): string {
   return input.replace(/\D/g, '')
 }

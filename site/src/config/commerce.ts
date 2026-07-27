@@ -3,7 +3,7 @@
  *
  * ⚠️ VALORES PROVISÓRIOS. Frete e desconto abaixo foram escolhidos como
  * ponto de partida, não vieram da operação da Space Watches. Antes de o site
- * ir ao ar, a loja precisa confirmar cada número aqui — o cliente vê estes
+ * ir ao ar, a loja precisa confirmar cada número aqui, o cliente vê estes
  * valores como promessa.
  */
 
@@ -15,7 +15,7 @@ export const FREE_SHIPPING_THRESHOLD = 100000
 
 /**
  * Tabela de frete por região, indexada pelo primeiro dígito do CEP.
- * Substituir por cotação real (Melhor Envio / Correios) — ver
+ * Substituir por cotação real (Melhor Envio / Correios), ver
  * `infra/shipping/`.
  */
 export const SHIPPING_TABLE: ReadonlyArray<{

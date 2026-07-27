@@ -9,16 +9,28 @@ interface WatchPhotoProps {
   /** `eager` só na primeira imagem visível (LCP). O resto entra sob demanda. */
   readonly loading?: 'lazy' | 'eager'
   readonly sizes?: string
+  /**
+   * `contain` mostra a peça inteira dentro do espaço, `cover` preenche cortando
+   * as bordas. Foto de catálogo (relógio recortado em fundo claro) pede
+   * `contain`: com `cover`, foto retrato perde a pulseira e a coroa.
+   */
+  readonly fit?: 'cover' | 'contain'
 }
 
 /**
  * Foto de relógio com degradação elegante.
  *
  * Enquanto o catálogo real não tem fotos, o arquivo não existe e o `onError`
- * cai no marcador da marca — melhor que ícone de imagem quebrada, e o layout
+ * cai no marcador da marca, melhor que ícone de imagem quebrada, e o layout
  * não pula porque o espaço é reservado pelo aspect-ratio do container.
  */
-export function WatchPhoto({ image, className, loading = 'lazy', sizes }: WatchPhotoProps) {
+export function WatchPhoto({
+  image,
+  className,
+  loading = 'lazy',
+  sizes,
+  fit = 'cover',
+}: WatchPhotoProps) {
   const [failed, setFailed] = useState(false)
   const showPlaceholder = image === undefined || failed
 
@@ -47,7 +59,11 @@ export function WatchPhoto({ image, className, loading = 'lazy', sizes }: WatchP
       decoding="async"
       sizes={sizes}
       onError={() => setFailed(true)}
-      className={cn('h-full w-full object-cover', className)}
+      className={cn(
+        'h-full w-full',
+        fit === 'contain' ? 'object-contain' : 'object-cover',
+        className,
+      )}
     />
   )
 }

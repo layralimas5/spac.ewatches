@@ -15,7 +15,7 @@ interface ProductGridProps {
 }
 
 /**
- * Grade de produtos com título e "ver todos" — o bloco que a home da
+ * Grade de produtos com título e "ver todos", o bloco que a home da
  * referência repete algumas vezes ("SALE", "Últimos lançamentos").
  *
  * Existe como componente único porque a home usa duas vezes com listas

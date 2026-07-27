@@ -1,5 +1,5 @@
 import { watchRepository } from '@/infra/catalog'
-import type { CatalogFilters, CatalogSort, Watch } from '@/domain/watch'
+import type { CatalogCategory, CatalogFilters, CatalogSort, Watch } from '@/domain/watch'
 import { useAsync, type AsyncState } from './use-async'
 
 export function useCatalog(filters: CatalogFilters, sort: CatalogSort): AsyncState<Watch[]> {
@@ -29,4 +29,8 @@ export function useRelatedWatches(id: string | undefined, limit = 3): AsyncState
 
 export function useBrands(): AsyncState<string[]> {
   return useAsync(() => watchRepository.listBrands(), 'brands')
+}
+
+export function useCategories(): AsyncState<CatalogCategory[]> {
+  return useAsync(() => watchRepository.listCategories(), 'categories')
 }

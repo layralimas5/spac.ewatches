@@ -86,7 +86,9 @@ export function CartDrawer() {
             animate={reduceMotion === true ? {} : { x: 0 }}
             exit={reduceMotion === true ? {} : { x: '100%' }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-paper shadow-2xl"
+            // `h-dvh` e não `h-full`: no celular a barra do navegador aparece e
+            // some, e com altura fixa o botão de finalizar ficaria escondido atrás dela.
+            className="absolute right-0 top-0 flex h-dvh w-full max-w-md flex-col bg-paper shadow-2xl"
           >
             <header className="flex items-center justify-between border-b border-paper-line px-5 py-4">
               <h2 className="text-base font-semibold text-ink-950">Seu carrinho</h2>
@@ -112,13 +114,14 @@ export function CartDrawer() {
                 <ul className="flex-1 list-none divide-y divide-paper-line overflow-y-auto px-5">
                   {cart.items.map((item) => (
                     <li key={item.watchId} className="flex gap-4 py-4">
-                      <div className="h-20 w-20 shrink-0 overflow-hidden rounded-md border border-paper-line bg-paper-alt">
+                      <div className="h-20 w-20 shrink-0 overflow-hidden rounded-md border border-paper-line bg-paper p-1">
                         <WatchPhoto
                           image={
                             item.imageUrl !== undefined
                               ? { url: item.imageUrl, alt: item.name }
                               : undefined
                           }
+                          fit="contain"
                           sizes="80px"
                         />
                       </div>
@@ -130,7 +133,7 @@ export function CartDrawer() {
                           {formatPrice(item.unitPrice * item.quantity)}
                         </p>
 
-                        <div className="mt-2 flex items-center gap-3">
+                        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
                           <QuantityStepper
                             value={item.quantity}
                             max={item.maxQuantity}
@@ -141,7 +144,7 @@ export function CartDrawer() {
                             type="button"
                             onClick={() => remove(item.watchId)}
                             aria-label={`Remover ${item.name} do carrinho`}
-                            className="text-ink-500 transition-colors hover:text-ink-950"
+                            className="inline-flex h-11 w-11 items-center justify-center rounded-md text-ink-500 transition-colors hover:text-ink-950"
                           >
                             <TrashIcon className="h-4 w-4" />
                           </button>
@@ -151,7 +154,9 @@ export function CartDrawer() {
                   ))}
                 </ul>
 
-                <footer className="border-t border-paper-line px-5 py-4">
+                {/* `safe-area-inset-bottom`: no iPhone o indicador de gesto come
+                    a faixa de baixo, e sem isso ele cobre o botão de finalizar. */}
+                <footer className="border-t border-paper-line px-5 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
                   {missingForFreeShipping > 0 && (
                     <p className="mb-3 rounded-md bg-paper-alt px-3 py-2 text-xs text-ink-500">
                       {`Faltam ${formatPrice(missingForFreeShipping)} para o frete grátis.`}

@@ -1,7 +1,7 @@
 import type { SVGProps } from 'react'
 
 /**
- * Ícones inline em SVG — nenhuma biblioteca, nenhum request extra.
+ * Ícones inline em SVG, nenhuma biblioteca, nenhum request extra.
  * Todos herdam `currentColor` e são decorativos por padrão (`aria-hidden`),
  * porque o rótulo acessível vem sempre do texto ou do `aria-label` do controle.
  */
@@ -31,6 +31,28 @@ export function WatchIcon(props: IconProps) {
       <circle cx="12" cy="12" r="6" />
       <path d="M12 9v3l2 1.5" />
       <path d="M9.5 6.2 10 3h4l.5 3.2M9.5 17.8 10 21h4l.5-3.2" />
+    </Icon>
+  )
+}
+
+/** Rastreio: caminhão de entrega. */
+export function TruckIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M3 6.5h10.5v9H3z" />
+      <path d="M13.5 9.5H17l3 3v3h-6.5z" />
+      <circle cx="7" cy="17.5" r="1.8" />
+      <circle cx="17" cy="17.5" r="1.8" />
+    </Icon>
+  )
+}
+
+/** Conta do cliente. */
+export function UserIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="12" cy="8" r="3.5" />
+      <path d="M4.5 20a7.5 7.5 0 0 1 15 0" />
     </Icon>
   )
 }
@@ -66,6 +88,24 @@ export function CheckIcon(props: IconProps) {
   return (
     <Icon {...props}>
       <path d="m4 12.5 5 5L20 6.5" />
+    </Icon>
+  )
+}
+
+/** Lupa com "mais": ampliar a foto do produto. */
+export function ZoomInIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="M15.5 15.5 21 21M8 10.5h5M10.5 8v5" />
+    </Icon>
+  )
+}
+
+export function ArrowLeftIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M19 12H5M11 6l-6 6 6 6" />
     </Icon>
   )
 }

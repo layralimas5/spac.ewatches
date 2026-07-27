@@ -8,7 +8,7 @@ export type AsyncState<T> =
 /**
  * Executa uma operação assíncrona e devolve um estado discriminado.
  *
- * O union força a UI a tratar loading e erro — não dá pra ler `data` sem antes
+ * O union força a UI a tratar loading e erro, não dá pra ler `data` sem antes
  * estreitar o status, então "esqueci o estado de erro" vira erro de compilação.
  *
  * `key` identifica a consulta: quando ela muda, a operação roda de novo. É uma

@@ -31,7 +31,7 @@ export default function OrderConfirmationPage() {
         )}
 
         <p className="mt-5 max-w-lg leading-relaxed text-ink-500">
-          Abrimos uma conversa no WhatsApp com o resumo completo — itens, endereço, frete e total.
+          Abrimos uma conversa no WhatsApp com o resumo completo, itens, endereço, frete e total.
           É por lá que combinamos o pagamento e a gente te avisa a cada etapa até a entrega.
         </p>
 

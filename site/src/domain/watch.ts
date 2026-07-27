@@ -1,6 +1,6 @@
 /**
  * Núcleo do domínio: o que é um relógio no catálogo da Space Watches.
- * Sem React, sem fetch, sem Supabase — só as regras do negócio.
+ * Sem React, sem fetch, sem Supabase, só as regras do negócio.
  */
 
 /** Como o cliente recebe o relógio. Define o CTA e o prazo mostrados na UI. */
@@ -17,8 +17,20 @@ export type PriceInCents = number
 
 export interface WatchImage {
   readonly url: string
-  /** Descrição para leitor de tela. Obrigatória — imagem de produto sem alt é barreira de acesso. */
+  /** Descrição para leitor de tela. Obrigatória, imagem de produto sem alt é barreira de acesso. */
   readonly alt: string
+}
+
+/**
+ * Variação de cor da peça (mostrador, pulseira ou caixa).
+ *
+ * Fica no domínio porque é atributo do produto, não enfeite de tela: quando o
+ * sistema de gestão entrar, cada variação vira estoque próprio.
+ */
+export interface WatchColor {
+  readonly name: string
+  /** Cor CSS da bolinha mostrada na vitrine. */
+  readonly hex: string
 }
 
 export interface WatchSpecs {
@@ -49,25 +61,50 @@ export interface Watch {
   /** Preço anterior, quando houver ajuste real. Nunca usar como recurso de urgência falsa. */
   readonly previousPrice?: PriceInCents
   readonly images: readonly WatchImage[]
+  /** Cores em que a peça sai. Ausente quando o modelo tem uma versão só. */
+  readonly colors?: readonly WatchColor[]
   readonly shortDescription: string
   readonly description: string
   readonly specs: WatchSpecs
-  /** Caixa e documentos originais — fator decisivo de confiança em importado. */
+  /** Caixa e documentos originais, fator decisivo de confiança em importado. */
   readonly hasBoxAndPapers: boolean
   readonly warrantyMonths: number
   readonly featured: boolean
 }
 
+/**
+ * Filtros do catálogo.
+ *
+ * Cada grupo aceita várias opções ao mesmo tempo: dentro do grupo vale OU
+ * (Rolex OU Tudor), entre grupos vale E (Rolex OU Tudor, E novo). É como o
+ * comprador pensa, ele quer ver duas marcas na mesma tela, não escolher uma.
+ *
+ * Lista vazia ou ausente significa "sem restrição", não "nenhum resultado".
+ */
 export interface CatalogFilters {
-  readonly brand?: string
-  readonly availability?: Availability
-  readonly condition?: Condition
+  readonly brands?: readonly string[]
+  readonly availabilities?: readonly Availability[]
+  readonly conditions?: readonly Condition[]
   readonly maxPrice?: PriceInCents
   /** Busca livre por nome, marca ou referência. */
   readonly query?: string
 }
 
 export type CatalogSort = 'relevancia' | 'menor-preco' | 'maior-preco'
+
+/**
+ * Categoria da vitrine (hoje, a marca).
+ *
+ * A capa sai do próprio catálogo, não de um arquivo separado: marca nova
+ * cadastrada já aparece com foto, e ninguém precisa lembrar de subir uma
+ * imagem de categoria à parte.
+ */
+export interface CatalogCategory {
+  readonly brand: string
+  readonly image?: WatchImage
+  /** Quantas peças da marca estão no catálogo. */
+  readonly count: number
+}
 
 /** Primeira imagem do relógio, ou `undefined` se o cadastro vier sem foto. */
 export function primaryImage(watch: Watch): WatchImage | undefined {
@@ -98,10 +135,15 @@ export function discountPercent(watch: Watch): number | null {
   return Math.floor(((watch.previousPrice - watch.price) / watch.previousPrice) * 100)
 }
 
+/** Sem seleção no grupo, tudo passa. Com seleção, basta bater com uma opção. */
+function matchesGroup<T>(selected: readonly T[] | undefined, value: T): boolean {
+  return selected === undefined || selected.length === 0 || selected.includes(value)
+}
+
 export function matchesFilters(watch: Watch, filters: CatalogFilters): boolean {
-  if (filters.brand !== undefined && watch.brand !== filters.brand) return false
-  if (filters.availability !== undefined && watch.availability !== filters.availability) return false
-  if (filters.condition !== undefined && watch.condition !== filters.condition) return false
+  if (!matchesGroup(filters.brands, watch.brand)) return false
+  if (!matchesGroup(filters.availabilities, watch.availability)) return false
+  if (!matchesGroup(filters.conditions, watch.condition)) return false
   if (filters.maxPrice !== undefined && watch.price > filters.maxPrice) return false
 
   if (filters.query !== undefined && filters.query.trim() !== '') {

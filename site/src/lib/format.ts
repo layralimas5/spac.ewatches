@@ -7,7 +7,7 @@ const brl = new Intl.NumberFormat('pt-BR', {
 })
 
 /**
- * Preço cheio em reais. Sem centavos: relógio de ticket alto não mostra ",00" —
+ * Preço cheio em reais. Sem centavos: relógio de ticket alto não mostra ",00",
  * polui e faz o número parecer de varejo.
  */
 export function formatPrice(cents: PriceInCents): string {

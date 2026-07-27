@@ -8,7 +8,7 @@ import { cn } from '@/lib/cn'
  *
  * Com a paleta só em preto, branco e cinza, o CTA principal é o retângulo
  * preto sólido: num site branco ele é o maior contraste possível da tela.
- * Dentro de bloco escuro isso se inverte — lá o cheio é branco.
+ * Dentro de bloco escuro isso se inverte, lá o cheio é branco.
  */
 export type ButtonVariant =
   | 'primary'
@@ -41,7 +41,7 @@ const sizes: Record<ButtonSize, string> = {
 /**
  * Estilo compartilhado entre `<button>` e `<a>`.
  *
- * Um link que navega continua sendo `<a>` e uma ação continua sendo `<button>` —
+ * Um link que navega continua sendo `<a>` e uma ação continua sendo `<button>`,
  * trocar a semântica pra reaproveitar visual quebra teclado e leitor de tela.
  */
 export function buttonStyles(

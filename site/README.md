@@ -1,4 +1,4 @@
-# Site — Space Watches
+# Site da Space Watches
 
 E-commerce vitrine da Space Watches. Catálogo de relógios importados originais
 e importação personalizada, com fechamento da venda pelo WhatsApp.
@@ -23,14 +23,14 @@ npm run dev
 ## Antes de publicar
 
 1. **Trocar o catálogo de demonstração.** `src/infra/catalog/watches.data.ts`
-   está com peças ILUSTRATIVAS — nomes, preços e referências inventados só para
+   está com peças ILUSTRATIVAS, nomes, preços e referências inventados só para
    a interface ter o que mostrar. Nenhuma delas é estoque real.
 2. **Colocar as fotos** em `public/catalogo/`, com o nome usado em `images.url`.
    Sem a foto, o card cai num marcador da marca em vez de quebrar.
 3. **Preencher `VITE_WHATSAPP_NUMBER`** em `.env.local`. Sem ele, todo CTA cai
    no Instagram em vez do WhatsApp.
 4. **Trocar o domínio** em `src/config/site.config.ts`, `public/robots.txt` e
-   `scripts/generate-sitemap.ts` — hoje está `spacewatches.com.br`.
+   `scripts/generate-sitemap.ts`, hoje está `spacewatches.com.br`.
 
 ## Arquitetura
 
@@ -46,7 +46,7 @@ src/
 ├── application/  Hooks que ligam domínio à UI
 ├── config/       Configuração pública (WhatsApp, URLs)
 ├── lib/          Formatação, links, JSON-LD
-└── ui/           Componentes, seções, páginas — só apresentação
+└── ui/           Componentes, seções, páginas, só apresentação
 ```
 
 Trocar o catálogo local pelo Supabase é **uma linha** em
@@ -58,14 +58,14 @@ em `../supabase/`.
 **WhatsApp em vez de checkout.** A loja já vende por conversa, o ticket é alto e
 a importação sob encomenda exige negociação de qualquer jeito. Cada CTA abre o
 WhatsApp com o modelo e o preço já escritos, então o cliente não digita nada.
-Se o número não estiver configurado, o link cai no Instagram — CTA morto é pior
+Se o número não estiver configurado, o link cai no Instagram, CTA morto é pior
 que CTA alternativo.
 
 **Filtros na URL.** `/catalogo?marca=Rolex&disponibilidade=pronta-entrega` é
 compartilhável, sobrevive ao reload e faz o botão voltar funcionar.
 
 **Escuro é a marca, não um tema.** Não existe modo claro. O logo nasce sobre
-preto e o dourado é cor de detalhe — os tokens em `src/index.css` vêm de
+preto e o dourado é cor de detalhe, os tokens em `src/index.css` vêm de
 `identidade/design-guide.md`, que é a fonte da verdade.
 
 ## Deploy

@@ -11,7 +11,7 @@ interface State {
 
 /**
  * Rede de segurança para erro de renderização.
- * Sem isso, uma exceção em qualquer componente deixa a página em branco —
+ * Sem isso, uma exceção em qualquer componente deixa a página em branco,
  * e página em branco não converte nem explica o que houve.
  */
 export class ErrorBoundary extends Component<Props, State> {

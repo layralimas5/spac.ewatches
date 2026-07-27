@@ -18,6 +18,7 @@ import { Seo } from '@/ui/components/Seo'
 import { buttonStyles } from '@/ui/components/Button'
 import { QuantityStepper } from '@/ui/components/QuantityStepper'
 import { WatchCard } from '@/ui/components/WatchCard'
+import { ColorSwatches } from '@/ui/components/ColorSwatches'
 import { CardSkeleton, StateMessage } from '@/ui/components/StateMessage'
 import { WatchGallery } from '@/ui/sections/WatchGallery'
 import { ShippingCalculator } from '@/ui/sections/ShippingCalculator'
@@ -71,7 +72,7 @@ export default function WatchPage() {
         />
         <StateMessage
           title="Esta peça não está mais no catálogo"
-          description="Pode ter sido vendida ou saído de linha. Veja o que temos hoje — ou peça esse modelo por encomenda."
+          description="Pode ter sido vendida ou saído de linha. Veja o que temos hoje, ou peça esse modelo por encomenda."
           action={
             <Link to="/catalogo" className={buttonStyles('primary', 'md')}>
               Ver catálogo
@@ -157,8 +158,22 @@ function WatchDetail({ watch }: { readonly watch: Watch }) {
             <h1 className="mt-1.5 text-2xl leading-tight text-ink-950 sm:text-3xl">{watch.name}</h1>
             <p className="mt-2 text-xs text-ink-500">{`SKU: ${watch.sku}`}</p>
 
+            {watch.colors !== undefined && watch.colors.length > 0 && (
+              <div className="mt-4">
+                <p className="eyebrow text-ink-500">
+                  {watch.colors.length === 1 ? 'Cor' : 'Cores'}
+                </p>
+                <div className="mt-2 flex flex-wrap items-center gap-3">
+                  <ColorSwatches colors={watch.colors} size="md" />
+                  <p className="text-sm text-ink-500">
+                    {watch.colors.map((color) => color.name).join(', ')}
+                  </p>
+                </div>
+              </div>
+            )}
+
             {soldOut && (
-              <p className="mt-4 inline-block rounded bg-ink-500 px-2.5 py-1 text-xs font-semibold text-cream">
+              <p className="mt-4 inline-block rounded bg-danger px-2.5 py-1 text-xs font-semibold text-cream">
                 Esgotado
               </p>
             )}
@@ -176,7 +191,7 @@ function WatchDetail({ watch }: { readonly watch: Watch }) {
                     {formatPrice(watch.previousPrice)}
                   </span>
                   {discount !== null && (
-                    <span className="rounded bg-ink-950 px-1.5 py-0.5 text-[0.6875rem] font-semibold text-cream">
+                    <span className="rounded bg-success px-1.5 py-0.5 text-[0.6875rem] font-semibold text-cream">
                       {`-${discount}% OFF`}
                     </span>
                   )}
@@ -309,7 +324,7 @@ function WatchDetail({ watch }: { readonly watch: Watch }) {
       </div>
 
       <section className="bg-ink-950 text-cream" aria-label="Garantias da loja">
-        <div className="container-brand grid gap-8 py-12 sm:grid-cols-3">
+        <div className="container-brand grid gap-6 py-9 sm:grid-cols-3 sm:gap-8">
           {[
             {
               icon: ShieldIcon,

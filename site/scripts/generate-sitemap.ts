@@ -7,7 +7,7 @@ import { demoWatches } from '../src/infra/catalog/watches.data.ts'
  * Gera `public/sitemap.xml` a partir do catálogo, no `prebuild`.
  * Sitemap escrito à mão nasce desatualizado no primeiro relógio novo.
  *
- * Quando o catálogo vier do Supabase, este script passa a consultar o banco —
+ * Quando o catálogo vier do Supabase, este script passa a consultar o banco,
  * a estrutura de saída continua a mesma.
  */
 
@@ -17,6 +17,8 @@ const staticRoutes = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/catalogo', priority: '0.9', changefreq: 'daily' },
   { path: '/importacao', priority: '0.8', changefreq: 'monthly' },
+  { path: '/rastreio', priority: '0.5', changefreq: 'monthly' },
+  { path: '/meus-pedidos', priority: '0.4', changefreq: 'monthly' },
 ] as const
 
 const today = new Date().toISOString().split('T')[0] ?? ''

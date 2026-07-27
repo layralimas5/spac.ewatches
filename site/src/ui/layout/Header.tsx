@@ -4,11 +4,19 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { navigation } from '@/config/navigation'
 import { useCart } from '@/application/use-cart'
 import { Logo } from '@/ui/components/Logo'
-import { CartIcon, ChevronDownIcon, CloseIcon, MenuIcon, SearchIcon } from '@/ui/components/icons'
+import {
+  CartIcon,
+  ChevronDownIcon,
+  CloseIcon,
+  MenuIcon,
+  SearchIcon,
+  TruckIcon,
+  UserIcon,
+} from '@/ui/components/icons'
 import { cn } from '@/lib/cn'
 
 /**
- * Header sólido e fixo, com barra promocional acima e carrinho à direita —
+ * Header sólido e fixo, com barra promocional acima e carrinho à direita,
  * a estrutura padrão do e-commerce brasileiro que a loja escolheu como
  * referência.
  *
@@ -66,7 +74,7 @@ export function Header() {
         isScrolled && 'shadow-[0_1px_20px_rgba(13,13,16,0.06)]',
       )}
     >
-      <div className="container-brand flex h-16 items-center gap-4 lg:h-18">
+      <div className="container-brand flex h-16 items-center gap-2 sm:gap-4 lg:h-18">
         <button
           type="button"
           onClick={() => setMenuOpen((current) => !current)}
@@ -78,7 +86,7 @@ export function Header() {
           {isMenuOpen ? <CloseIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
         </button>
 
-        <Link to="/" aria-label="Space Watches — página inicial" className="shrink-0">
+        <Link to="/" aria-label="Space Watches, página inicial" className="shrink-0">
           <Logo />
         </Link>
 
@@ -99,8 +107,12 @@ export function Header() {
                 to={item.to}
                 className={({ isActive }) =>
                   cn(
-                    'inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm transition-colors',
-                    isActive ? 'text-ink-950' : 'text-ink-950 hover:text-ink-950',
+                    'inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm text-ink-950',
+                    // Sem cor de acento, o item ativo se distingue por peso e
+                    // sublinhado, não dá pra marcá-lo trocando a cor.
+                    isActive
+                      ? 'font-semibold underline underline-offset-8'
+                      : 'font-normal hover:underline hover:underline-offset-8',
                   )
                 }
               >
@@ -149,10 +161,33 @@ export function Header() {
           </div>
         </form>
 
+        {/*
+          Rastreio e conta ficam escondidos no celular e viram item do menu: com
+          logo, busca e carrinho, mais dois ícones não cabem numa tela de 320px
+          sem espremer tudo.
+        */}
+        <Link
+          to="/rastreio"
+          aria-label="Rastrear pedido"
+          title="Rastrear pedido"
+          className="ml-auto hidden h-10 w-10 items-center justify-center rounded-md text-ink-950 transition-opacity hover:opacity-60 sm:inline-flex md:ml-2"
+        >
+          <TruckIcon className="h-6 w-6" />
+        </Link>
+
+        <Link
+          to="/meus-pedidos"
+          aria-label="Meus pedidos"
+          title="Meus pedidos"
+          className="hidden h-10 w-10 items-center justify-center rounded-md text-ink-950 transition-opacity hover:opacity-60 sm:inline-flex"
+        >
+          <UserIcon className="h-6 w-6" />
+        </Link>
+
         <button
           type="button"
           onClick={open}
-          className="relative ml-auto inline-flex h-10 w-10 items-center justify-center rounded-md text-ink-950 transition-colors hover:text-ink-950 md:ml-2"
+          className="relative ml-auto inline-flex h-10 w-10 items-center justify-center rounded-md text-ink-950 transition-opacity hover:opacity-60 sm:ml-0"
           aria-label={count === 0 ? 'Abrir carrinho, vazio' : `Abrir carrinho, ${count} item(ns)`}
         >
           <CartIcon className="h-6 w-6" />
@@ -219,6 +254,29 @@ export function Header() {
                       )}
                     </li>
                   ))}
+                </ul>
+
+                {/* O que no desktop é ícone ao lado do carrinho, aqui vira linha
+                    escrita: ícone sozinho em menu de celular ninguém entende. */}
+                <ul className="mt-2 list-none space-y-1 border-t border-paper-line pt-2">
+                  <li>
+                    <Link
+                      to="/rastreio"
+                      className="flex items-center gap-3 rounded-md px-3 py-3 text-base font-medium text-ink-950 hover:bg-paper-alt"
+                    >
+                      <TruckIcon className="h-5 w-5 text-ink-500" />
+                      Rastrear pedido
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/meus-pedidos"
+                      className="flex items-center gap-3 rounded-md px-3 py-3 text-base font-medium text-ink-950 hover:bg-paper-alt"
+                    >
+                      <UserIcon className="h-5 w-5 text-ink-500" />
+                      Meus pedidos
+                    </Link>
+                  </li>
                 </ul>
               </nav>
             </div>

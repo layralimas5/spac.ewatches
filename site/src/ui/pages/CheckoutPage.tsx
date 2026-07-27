@@ -35,7 +35,7 @@ const emptyAddress: ShippingAddress = {
  * Checkout em página única, com o resumo do pedido sempre visível.
  *
  * Validação acontece no envio e as mensagens ficam presas ao campo por
- * `aria-describedby` — erro que só aparece como texto solto no topo não é lido
+ * `aria-describedby`, erro que só aparece como texto solto no topo não é lido
  * por quem usa leitor de tela ao chegar no campo errado.
  */
 export default function CheckoutPage() {
@@ -133,7 +133,7 @@ export default function CheckoutPage() {
         return
       }
 
-      // O carrinho só é esvaziado depois que o pedido foi aceito — falhar no
+      // O carrinho só é esvaziado depois que o pedido foi aceito, falhar no
       // meio e perder tudo é a pior coisa que um checkout pode fazer.
       clear()
 
@@ -375,7 +375,7 @@ export default function CheckoutPage() {
 
               <p className="mt-4 rounded-md bg-paper-alt px-3 py-2.5 text-xs leading-relaxed text-ink-500">
                 O pagamento é combinado no atendimento. Ao finalizar, seu pedido é registrado e
-                aberto no WhatsApp da loja com todos os dados — sem precisar digitar nada de novo.
+                aberto no WhatsApp da loja com todos os dados, sem precisar digitar nada de novo.
               </p>
             </fieldset>
           </div>
@@ -387,20 +387,23 @@ export default function CheckoutPage() {
               <ul className="mt-4 list-none divide-y divide-paper-line">
                 {cart.items.map((item) => (
                   <li key={item.watchId} className="flex gap-3 py-3">
-                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded border border-paper-line bg-paper-alt">
+                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded border border-paper-line bg-paper p-1">
                       <WatchPhoto
                         image={
                           item.imageUrl !== undefined
                             ? { url: item.imageUrl, alt: item.name }
                             : undefined
                         }
+                        fit="contain"
                         sizes="64px"
                       />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm text-ink-950">{item.name}</p>
                       <p className="text-xs text-ink-500">{item.brand}</p>
-                      <div className="mt-1.5 flex items-center justify-between gap-2">
+                      {/* `flex-wrap`: em tela de 320px o stepper e o "remover"
+                          não cabem lado a lado, e sem quebrar um sai do card. */}
+                      <div className="mt-1.5 flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
                         <QuantityStepper
                           value={item.quantity}
                           max={item.maxQuantity}
@@ -410,7 +413,7 @@ export default function CheckoutPage() {
                         <button
                           type="button"
                           onClick={() => remove(item.watchId)}
-                          className="text-xs text-ink-500 hover:text-ink-950"
+                          className="inline-flex min-h-11 items-center text-xs text-ink-500 hover:text-ink-950"
                         >
                           Remover
                         </button>

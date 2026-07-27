@@ -26,6 +26,15 @@ function isCondition(value: string): value is Condition {
   return (CONDITIONS as readonly string[]).includes(value)
 }
 
+/**
+ * Grupo com várias opções vira parâmetro repetido: `?marca=Rolex&marca=Tudor`.
+ * É o formato que `URLSearchParams` já lê e escreve, sem inventar separador.
+ */
+function replaceAll(params: URLSearchParams, key: string, values: readonly string[]): void {
+  params.delete(key)
+  for (const value of values) params.append(key, value)
+}
+
 export default function CatalogPage() {
   // Os filtros moram na URL: link compartilhável, botão voltar funcionando e estado que sobrevive ao reload.
   const [searchParams, setSearchParams] = useSearchParams()
@@ -34,44 +43,48 @@ export default function CatalogPage() {
     const sortParam = searchParams.get('ordenar') ?? ''
     return {
       query: searchParams.get('q') ?? '',
-      brand: searchParams.get('marca') ?? '',
-      availability: searchParams.get('disponibilidade') ?? '',
-      condition: searchParams.get('condicao') ?? '',
+      brands: searchParams.getAll('marca'),
+      availabilities: searchParams.getAll('disponibilidade'),
+      conditions: searchParams.getAll('condicao'),
       sort: isSort(sortParam) ? sortParam : 'relevancia',
     }
   }, [searchParams])
 
-  const filters = useMemo<Filters>(
-    () => ({
+  const filters = useMemo<Filters>(() => {
+    // A URL é digitável, então lixo pode chegar aqui. O que não for valor
+    // conhecido é descartado em vez de zerar a vitrine.
+    const availabilities = values.availabilities.filter(isAvailability)
+    const conditions = values.conditions.filter(isCondition)
+
+    return {
       ...(values.query !== '' && { query: values.query }),
-      ...(values.brand !== '' && { brand: values.brand }),
-      ...(isAvailability(values.availability) && { availability: values.availability }),
-      ...(isCondition(values.condition) && { condition: values.condition }),
-    }),
-    [values],
-  )
+      ...(values.brands.length > 0 && { brands: values.brands }),
+      ...(availabilities.length > 0 && { availabilities }),
+      ...(conditions.length > 0 && { conditions }),
+    }
+  }, [values])
 
   const state = useCatalog(filters, values.sort)
 
   const handleChange = useCallback(
     (patch: Partial<CatalogFilterValues>) => {
       const next = new URLSearchParams(searchParams)
-      const keys: Record<keyof CatalogFilterValues, string> = {
-        query: 'q',
-        brand: 'marca',
-        availability: 'disponibilidade',
-        condition: 'condicao',
-        sort: 'ordenar',
+
+      if (patch.query !== undefined) {
+        if (patch.query === '') next.delete('q')
+        else next.set('q', patch.query)
       }
 
-      for (const [field, value] of Object.entries(patch)) {
-        const param = keys[field as keyof CatalogFilterValues]
-        if (value === undefined || value === '' || value === 'relevancia') {
-          next.delete(param)
-        } else {
-          next.set(param, value)
-        }
+      if (patch.sort !== undefined) {
+        // Relevância é o padrão e não precisa sujar a URL.
+        if (patch.sort === 'relevancia') next.delete('ordenar')
+        else next.set('ordenar', patch.sort)
       }
+
+      if (patch.brands !== undefined) replaceAll(next, 'marca', patch.brands)
+      if (patch.availabilities !== undefined)
+        replaceAll(next, 'disponibilidade', patch.availabilities)
+      if (patch.conditions !== undefined) replaceAll(next, 'condicao', patch.conditions)
 
       // `replace` para digitar na busca não encher o histórico de entradas.
       setSearchParams(next, { replace: true })
@@ -85,9 +98,9 @@ export default function CatalogPage() {
 
   const hasActiveFilters =
     values.query !== '' ||
-    values.brand !== '' ||
-    values.availability !== '' ||
-    values.condition !== '' ||
+    values.brands.length > 0 ||
+    values.availabilities.length > 0 ||
+    values.conditions.length > 0 ||
     values.sort !== 'relevancia'
 
   const resultCount = state.status === 'success' ? state.data.length : 0
@@ -122,7 +135,7 @@ export default function CatalogPage() {
           </p>
         </header>
 
-        {/* Filtros na lateral no desktop, empilhados no celular — o padrão de
+        {/* Filtros na lateral no desktop, empilhados no celular, o padrão de
             listagem de e-commerce, que deixa a grade ocupar a largura útil. */}
         <div className="mt-8 grid gap-8 lg:grid-cols-[16rem_1fr] lg:gap-10">
           <aside className="lg:sticky lg:top-24 lg:self-start">
@@ -148,7 +161,7 @@ export default function CatalogPage() {
             <StateMessage
               tone="error"
               title="Não consegui carregar o catálogo"
-              description="Algo falhou ao buscar as peças. Tente recarregar a página — se continuar, fale com a gente que resolvemos por lá."
+              description="Algo falhou ao buscar as peças. Tente recarregar a página, se continuar, fale com a gente que resolvemos por lá."
               action={
                 <a
                   href={customImportLink()}
@@ -166,7 +179,7 @@ export default function CatalogPage() {
           {state.status === 'success' && state.data.length === 0 && (
             <StateMessage
               title="Nenhum relógio com esses filtros"
-              description="Limpe os filtros para ver o catálogo inteiro — ou peça direto o modelo que você procura, que a gente cota a importação."
+              description="Limpe os filtros para ver o catálogo inteiro, ou peça direto o modelo que você procura, que a gente cota a importação."
               action={
                 <div className="flex flex-col gap-3 sm:flex-row">
                   <button type="button" onClick={handleClear} className={buttonStyles('outline', 'md')}>

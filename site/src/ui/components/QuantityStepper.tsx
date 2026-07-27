@@ -7,14 +7,15 @@ interface QuantityStepperProps {
 }
 
 export function QuantityStepper({ value, max, onChange, label }: QuantityStepperProps) {
+  // 44px de altura: o mínimo confortável para o dedo, segundo o WCAG.
   return (
-    <div className="inline-flex h-10 items-center rounded-md border border-paper-line">
+    <div className="inline-flex h-11 items-center rounded-md border border-paper-line">
       <button
         type="button"
         onClick={() => onChange(value - 1)}
         disabled={value <= 1}
         aria-label={`Diminuir quantidade de ${label}`}
-        className="h-full w-9 text-lg text-ink-500 transition-colors hover:text-ink-950 disabled:opacity-40 disabled:hover:text-ink-500"
+        className="h-full w-10 text-lg text-ink-500 transition-colors hover:text-ink-950 disabled:opacity-40 disabled:hover:text-ink-500"
       >
         −
       </button>
@@ -29,7 +30,7 @@ export function QuantityStepper({ value, max, onChange, label }: QuantityStepper
         onClick={() => onChange(value + 1)}
         disabled={value >= max}
         aria-label={`Aumentar quantidade de ${label}`}
-        className="h-full w-9 text-lg text-ink-500 transition-colors hover:text-ink-950 disabled:opacity-40 disabled:hover:text-ink-500"
+        className="h-full w-10 text-lg text-ink-500 transition-colors hover:text-ink-950 disabled:opacity-40 disabled:hover:text-ink-500"
       >
         +
       </button>

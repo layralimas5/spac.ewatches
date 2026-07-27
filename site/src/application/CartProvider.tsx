@@ -19,7 +19,7 @@ const STORAGE_KEY = 'space-watches:cart:v1'
  *
  * Isso é intencional enquanto não há login: o cliente fecha a aba, volta no dia
  * seguinte e o carrinho continua lá. Quando existir conta de usuário, este
- * provider passa a sincronizar com o banco — a API para os componentes é a mesma.
+ * provider passa a sincronizar com o banco, a API para os componentes é a mesma.
  */
 export function CartProvider({ children }: { readonly children: ReactNode }) {
   const [cart, setCart] = useState<Cart>(() => readStoredCart())

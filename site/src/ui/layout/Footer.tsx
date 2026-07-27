@@ -31,6 +31,16 @@ export function Footer() {
                 Importação sob encomenda
               </Link>
             </li>
+            <li>
+              <Link to="/rastreio" className="text-muted transition-colors hover:text-cream">
+                Rastrear pedido
+              </Link>
+            </li>
+            <li>
+              <Link to="/meus-pedidos" className="text-muted transition-colors hover:text-cream">
+                Meus pedidos
+              </Link>
+            </li>
           </ul>
         </nav>
 

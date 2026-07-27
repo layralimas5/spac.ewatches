@@ -1,9 +1,11 @@
 import { useCatalog, useFeaturedWatches } from '@/application/use-catalog'
 import { Seo } from '@/ui/components/Seo'
 import { BannerCarousel } from '@/ui/sections/BannerCarousel'
+import { BrandMarquee } from '@/ui/sections/BrandMarquee'
 import { CategoryGrid } from '@/ui/sections/CategoryGrid'
 import { ProductGrid } from '@/ui/sections/ProductGrid'
 import { PromoBanners } from '@/ui/sections/PromoBanners'
+import { WideBanner } from '@/ui/sections/WideBanner'
 import { BenefitsStrip } from '@/ui/sections/BenefitsStrip'
 import { storeStructuredData } from '@/lib/structured-data'
 import { siteConfig } from '@/config/site.config'
@@ -12,7 +14,7 @@ export default function HomePage() {
   const featured = useFeaturedWatches(4)
   // "Pronta-entrega" é um recorte verdadeiro do catálogo, não uma vitrine
   // inventada: são as peças que a loja tem em mãos agora.
-  const readyToShip = useCatalog({ availability: 'pronta-entrega' }, 'menor-preco')
+  const readyToShip = useCatalog({ availabilities: ['pronta-entrega'] }, 'menor-preco')
 
   return (
     <>
@@ -24,6 +26,7 @@ export default function HomePage() {
       />
 
       <BannerCarousel />
+      <BrandMarquee />
       <CategoryGrid />
 
       <ProductGrid
@@ -35,6 +38,7 @@ export default function HomePage() {
       />
 
       <PromoBanners />
+      <WideBanner />
 
       <ProductGrid
         id="pronta-entrega"

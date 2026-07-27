@@ -46,7 +46,7 @@ export class TableShippingProvider implements ShippingProvider {
       options: [
         {
           id: 'padrao',
-          label: qualifiesForFreeShipping ? 'Envio padrão — grátis' : 'Envio padrão',
+          label: qualifiesForFreeShipping ? 'Envio padrão grátis' : 'Envio padrão',
           price: qualifiesForFreeShipping ? 0 : row.standardPrice,
           estimatedDays: row.standardDays,
         },

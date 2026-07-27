@@ -8,7 +8,7 @@ const benefits = [
 ]
 
 /**
- * Faixa de benefícios acima do rodapé — estática, ao contrário da barra
+ * Faixa de benefícios acima do rodapé, estática, ao contrário da barra
  * promocional do topo, que rola.
  *
  * Duas faixas em movimento na mesma página competem entre si e nenhuma é lida.

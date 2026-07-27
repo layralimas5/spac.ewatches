@@ -62,7 +62,7 @@ export interface PaymentGateway {
   checkout(draft: OrderDraft, totals: OrderTotals): Promise<PaymentResult>
 }
 
-/** Pix com desconto é padrão no varejo brasileiro — a loja define o percentual. */
+/** Pix com desconto é padrão no varejo brasileiro, a loja define o percentual. */
 export function computeTotals(
   cart: Cart,
   shipping: ShippingOption | null,

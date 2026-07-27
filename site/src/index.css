@@ -9,7 +9,7 @@
   /*
    * Paleta: preto, branco e cinza. Nada mais.
    *
-   * Sem cor de acento, a hierarquia passa a vir de PESO, TAMANHO e CONTRASTE —
+   * Sem cor de acento, a hierarquia passa a vir de PESO, TAMANHO e CONTRASTE,
    * não de cor. Por isso o CTA é preto sólido: num site branco, o bloco preto
    * é o elemento de maior contraste possível, e vira o ponto mais forte da tela
    * sem precisar de cor nenhuma.
@@ -17,7 +17,7 @@
    * Os cinzas são neutros de verdade (R=G=B), sem viés quente ou frio.
    */
 
-  /* Preto e cinzas escuros — texto principal e superfícies invertidas */
+  /* Preto e cinzas escuros: texto principal e superfícies invertidas */
   --color-ink-950: #0a0a0a;
   --color-ink-900: #171717;
   --color-ink-800: #262626;
@@ -32,13 +32,28 @@
   --color-cream: #ffffff;
   --color-muted: #a3a3a3;
 
-  /* Superfícies claras — o padrão do site */
+  /* Superfícies claras: o padrão do site */
   --color-paper: #ffffff;
   --color-paper-alt: #f5f5f5;
   --color-paper-line: #e5e5e5;
 
   /*
-   * Tipografia — sans-serif em tudo.
+   * Único desvio do preto e branco, e só para status negativo: "Esgotado".
+   * Não é cor de promoção nem de urgência, é sinal de indisponibilidade, o
+   * caso em que o vermelho comunica mais rápido que qualquer cinza.
+   * 6.2:1 com texto branco, passa AA.
+   */
+  --color-danger: #b91c1c;
+
+  /*
+   * Verde do selo de desconto. Mesma lógica do vermelho: não é cor da marca,
+   * é código de varejo que o comprador já lê sem pensar (verde economiza,
+   * vermelho indisponível). 4.9:1 com texto branco, passa AA.
+   */
+  --color-success: #15803d;
+
+  /*
+   * Tipografia: sans-serif em tudo.
    * A serifada saiu: o padrão de e-commerce brasileiro (a referência que a
    * loja escolheu) é sans em título e corpo. `--font-display` continua
    * existindo como papel semântico (títulos), não como "fonte com serifa".
@@ -46,7 +61,7 @@
   --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-  /* Ritmo de animação — sutil, nunca chamativo */
+  /* Ritmo de animação: sutil, nunca chamativo */
   --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -63,6 +78,25 @@
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    /*
+     * Trava de segurança contra rolagem lateral no celular. `clip` em vez de
+     * `hidden` de propósito: `hidden` criaria um contexto de rolagem e mataria
+     * o `position: sticky` do header.
+     */
+    overflow-x: clip;
+  }
+
+  /*
+   * O Safari do iPhone dá zoom sozinho ao focar campo com fonte menor que 16px,
+   * e a página fica torta depois. No celular o campo sobe para 16px; do sm
+   * para cima volta ao tamanho do design.
+   */
+  @media (width < 40rem) {
+    input,
+    select,
+    textarea {
+      font-size: 16px;
+    }
   }
 
   /*
@@ -77,7 +111,7 @@
     letter-spacing: -0.015em;
   }
 
-  /* Foco visível em tudo que é navegável — requisito de a11y, não enfeite */
+  /* Foco visível em tudo que é navegável, requisito de a11y, não enfeite */
   :where(a, button, input, select, textarea, [tabindex]):focus-visible {
     outline: 2px solid var(--color-ink-950);
     outline-offset: 2px;
@@ -116,6 +150,19 @@
   }
 }
 
+/*
+ * Lista que rola na horizontal no celular sem a barra de rolagem aparecendo
+ * por cima do conteúdo. O gesto continua funcionando igual.
+ */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Assinatura visual do logo: caixa alta com tracking largo */
 @utility eyebrow {
   font-size: 0.6875rem;
@@ -125,13 +172,44 @@
 }
 
 /*
+ * Pulsar leve no hover, usado na foto do card de produto e no círculo da
+ * categoria.
+ *
+ * Quem pulsa é sempre um elemento DE DENTRO do card, nunca o card inteiro: se a
+ * área clicável mudasse de tamanho, a borda passaria por baixo do cursor a cada
+ * ciclo, o hover entraria e sairia sozinho e a animação ficaria piscando.
+ *
+ * `hover: hover` deixa de fora o celular, onde o toque deixaria a animação
+ * presa ligada depois do clique. Quem pediu menos movimento no sistema já é
+ * atendido pela regra global de `prefers-reduced-motion`.
+ */
+@keyframes pulse-soft {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.035);
+  }
+}
+
+@media (hover: hover) {
+  /* Sem `transition` aqui: ela sobrescreveria o `transition-colors` que o
+     círculo da categoria usa para acender a borda. */
+  .hover-pulse:hover,
+  .group:hover .hover-pulse {
+    animation: pulse-soft 1.8s ease-in-out infinite;
+  }
+}
+
+/*
  * Faixa de destaques em loop infinito.
  *
  * A trilha contém a lista DUPLICADA e desliza até -50%: no instante em que a
  * primeira cópia sai de cena, a segunda está exatamente onde a primeira
  * começou, então o corte é invisível e o loop nunca "salta".
  *
- * Anima só `transform` — a propriedade que o navegador resolve na GPU, sem
+ * Anima só `transform`, a propriedade que o navegador resolve na GPU, sem
  * recalcular layout a cada frame.
  */
 @keyframes marquee-left {
@@ -146,7 +224,7 @@
 @utility marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-left 45s linear infinite;
+  animation: marquee-left var(--marquee-duration, 45s) linear infinite;
   will-change: transform;
 }
 

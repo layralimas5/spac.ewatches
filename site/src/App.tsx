@@ -5,12 +5,14 @@ import { ErrorBoundary } from '@/ui/components/ErrorBoundary'
 import { CartProvider } from '@/application/CartProvider'
 import HomePage from '@/ui/pages/HomePage'
 
-// A Home entra no bundle inicial — é a rota de entrada e não pode esperar um chunk.
+// A Home entra no bundle inicial, é a rota de entrada e não pode esperar um chunk.
 // As outras carregam sob demanda.
 const CatalogPage = lazy(() => import('@/ui/pages/CatalogPage'))
 const WatchPage = lazy(() => import('@/ui/pages/WatchPage'))
 const CustomImportPage = lazy(() => import('@/ui/pages/CustomImportPage'))
 const CheckoutPage = lazy(() => import('@/ui/pages/CheckoutPage'))
+const TrackOrderPage = lazy(() => import('@/ui/pages/TrackOrderPage'))
+const MyOrdersPage = lazy(() => import('@/ui/pages/MyOrdersPage'))
 const OrderConfirmationPage = lazy(() => import('@/ui/pages/OrderConfirmationPage'))
 const NotFoundPage = lazy(() => import('@/ui/pages/NotFoundPage'))
 
@@ -65,6 +67,22 @@ export default function App() {
                 element={
                   <Lazy>
                     <CheckoutPage />
+                  </Lazy>
+                }
+              />
+              <Route
+                path="rastreio"
+                element={
+                  <Lazy>
+                    <TrackOrderPage />
+                  </Lazy>
+                }
+              />
+              <Route
+                path="meus-pedidos"
+                element={
+                  <Lazy>
+                    <MyOrdersPage />
                   </Lazy>
                 }
               />

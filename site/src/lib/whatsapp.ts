@@ -7,7 +7,7 @@ import type { Watch } from '@/domain/watch'
  * de uma conversa com o modelo identificado, sem ter que digitar nada.
  *
  * Se o número ainda não estiver configurado, cai no direct do Instagram em vez
- * de gerar um link quebrado — CTA morto é pior que CTA alternativo.
+ * de gerar um link quebrado, CTA morto é pior que CTA alternativo.
  */
 
 function buildLink(message: string): string {
@@ -17,7 +17,7 @@ function buildLink(message: string): string {
   return `https://wa.me/${siteConfig.whatsapp.number}?text=${encodeURIComponent(message)}`
 }
 
-/** Contato genérico — header, footer, CTA de fim de página. */
+/** Contato genérico: header, footer, CTA de fim de página. */
 export function generalContactLink(): string {
   return buildLink('Olá! Vim pelo site da Space Watches e gostaria de mais informações.')
 }
@@ -43,6 +43,17 @@ export function customImportLink(): string {
     'Olá! Quero fazer uma importação personalizada. ' +
       'O modelo que procuro é: ',
   )
+}
+
+/**
+ * Rastreio de pedido.
+ *
+ * O acompanhamento acontece na conversa, então o link já sai com o código
+ * digitado: a loja abre o WhatsApp sabendo qual pedido consultar.
+ */
+export function orderTrackingLink(orderCode: string): string {
+  const code = orderCode.trim()
+  return buildLink(`Olá! Quero acompanhar o meu pedido ${code}. Pode me dar uma posição?`)
 }
 
 /** Rótulo do CTA, coerente com o destino real do link. */

@@ -5,7 +5,7 @@ import { Header } from './Header'
 import { Footer } from './Footer'
 import { CartDrawer } from '@/ui/components/CartDrawer'
 
-/** Volta ao topo a cada navegação — sem isso a página nova abre na rolagem antiga. */
+/** Volta ao topo a cada navegação, sem isso a página nova abre na rolagem antiga. */
 function useScrollToTopOnNavigate(pathname: string) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })

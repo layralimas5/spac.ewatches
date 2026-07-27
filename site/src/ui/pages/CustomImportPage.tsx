@@ -36,7 +36,7 @@ const faq = [
   {
     question: 'Dá pra trazer qualquer modelo?',
     answer:
-      'Quase sempre. Peças de produção corrente são as mais simples. Edições limitadas e modelos descontinuados dependem de disponibilidade no mercado — nesses casos a gente avisa antes de você se comprometer com qualquer coisa.',
+      'Quase sempre. Peças de produção corrente são as mais simples. Edições limitadas e modelos descontinuados dependem de disponibilidade no mercado, nesses casos a gente avisa antes de você se comprometer com qualquer coisa.',
   },
   {
     question: 'Quanto tempo demora?',
@@ -71,7 +71,7 @@ export default function CustomImportPage() {
             O modelo que você quer, mesmo que não esteja no catálogo
           </h1>
           <p className="mt-5 text-base leading-relaxed text-ink-500 sm:text-lg">
-            O catálogo mostra o que temos hoje — não o que dá pra conseguir. Se você já sabe o
+            O catálogo mostra o que temos hoje, não o que dá pra conseguir. Se você já sabe o
             relógio que quer, a gente busca, cota e importa pra você.
           </p>
 

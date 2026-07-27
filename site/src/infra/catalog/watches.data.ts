@@ -1,7 +1,7 @@
 import type { Watch } from '@/domain/watch'
 
 /**
- * ⚠️ CATÁLOGO DE DEMONSTRAÇÃO — NÃO PUBLICAR COMO ESTÁ.
+ * ⚠️ CATÁLOGO DE DEMONSTRAÇÃO: NÃO PUBLICAR COMO ESTÁ.
  *
  * Nomes, referências, preços e specs abaixo são ILUSTRATIVOS, escritos só para
  * a interface ter o que mostrar enquanto o catálogo real não existe. Nenhum
@@ -12,7 +12,7 @@ import type { Watch } from '@/domain/watch'
  *   2. Colocar as fotos em `public/catalogo/` com o nome usado em `images.url`
  *   3. Conferir preço, referência e specs de cada peça
  *
- * Quando o Supabase entrar, este arquivo sai e a fonte passa a ser o banco —
+ * Quando o Supabase entrar, este arquivo sai e a fonte passa a ser o banco,
  * a UI não muda, porque tudo consome `WatchRepository`.
  */
 export const demoWatches: readonly Watch[] = [
@@ -27,12 +27,17 @@ export const demoWatches: readonly Watch[] = [
     availability: 'pronta-entrega',
     price: 8990000,
     images: [
-      { url: '/catalogo/rolex-datejust-41.jpg', alt: 'Rolex Datejust 41 com pulseira Jubilee e mostrador azul' },
+      { url: '/catalogo/rolex-datejust-41.webp', alt: 'Rolex Datejust 41 com pulseira Jubilee e mostrador azul' },
+    ],
+    colors: [
+      { name: 'Azul', hex: '#1f3a68' },
+      { name: 'Prateado', hex: '#c9ccd1' },
+      { name: 'Champanhe', hex: '#d8c390' },
     ],
     shortDescription: 'O clássico que nunca sai de linha, em aço com bezel canelado.',
     description:
       'O Datejust 41 é o relógio que define o que é um relógio de vestir moderno. ' +
-      'Caixa em aço Oystersteel, bezel canelado em ouro branco 18k e pulseira Jubilee — ' +
+      'Caixa em aço Oystersteel, bezel canelado em ouro branco 18k e pulseira Jubilee, ' +
       'a combinação mais reconhecível da marca. Acompanha caixa e documentos originais.',
     specs: {
       movement: 'Automático, calibre 3235',
@@ -57,8 +62,9 @@ export const demoWatches: readonly Watch[] = [
     availability: 'pronta-entrega',
     price: 5490000,
     images: [
-      { url: '/catalogo/omega-speedmaster.jpg', alt: 'Omega Speedmaster Professional Moonwatch com mostrador preto' },
+      { url: '/catalogo/omega-speedmaster.webp', alt: 'Omega Speedmaster Professional Moonwatch com mostrador preto e pulseira de couro' },
     ],
+    colors: [{ name: 'Preto', hex: '#141414' }],
     shortDescription: 'O cronógrafo que foi à Lua, com corda manual e vidro Hesalite.',
     description:
       'O Moonwatch mantém a construção que a NASA aprovou: cronógrafo de corda manual, ' +
@@ -69,7 +75,7 @@ export const demoWatches: readonly Watch[] = [
       caseSizeMm: 42,
       glass: 'Hesalite',
       waterResistance: '50 metros',
-      bracelet: 'Aço inoxidável',
+      bracelet: 'Couro preto',
     },
     hasBoxAndPapers: true,
     warrantyMonths: 60,
@@ -86,11 +92,16 @@ export const demoWatches: readonly Watch[] = [
     availability: 'sob-encomenda',
     price: 4790000,
     images: [
-      { url: '/catalogo/cartier-santos.jpg', alt: 'Santos de Cartier médio em aço com mostrador prateado' },
+      { url: '/catalogo/cartier-santos.webp', alt: 'Santos de Cartier médio em aço com mostrador verde e algarismos romanos' },
+    ],
+    colors: [
+      { name: 'Verde', hex: '#22452f' },
+      { name: 'Prateado', hex: '#d2d5d9' },
+      { name: 'Azul', hex: '#26406e' },
     ],
     shortDescription: 'Caixa quadrada, parafusos aparentes e troca de pulseira sem ferramenta.',
     description:
-      'O Santos é o relógio de pulso como conhecemos hoje — Cartier o criou para um aviador ' +
+      'O Santos é o relógio de pulso como conhecemos hoje, Cartier o criou para um aviador ' +
       'que não conseguia ver as horas no relógio de bolso. O sistema QuickSwitch troca a ' +
       'pulseira sem ferramenta nenhuma.',
     specs: {
@@ -116,9 +127,13 @@ export const demoWatches: readonly Watch[] = [
     availability: 'pronta-entrega',
     price: 2690000,
     images: [
-      { url: '/catalogo/tudor-black-bay-58.jpg', alt: 'Tudor Black Bay 58 azul marinho com pulseira de aço' },
+      { url: '/catalogo/tudor-black-bay-58.webp', alt: 'Tudor Black Bay 58 azul marinho com pulseira de aço' },
     ],
-    shortDescription: 'Mergulhador vintage de 39mm — o tamanho que caiu no gosto de todo mundo.',
+    colors: [
+      { name: 'Azul marinho', hex: '#1c2b4a' },
+      { name: 'Preto', hex: '#141414' },
+    ],
+    shortDescription: 'Mergulhador vintage de 39mm, o tamanho que caiu no gosto de todo mundo.',
     description:
       'O Black Bay 58 acertou onde muito mergulhador erra: 39mm e perfil baixo, ' +
       'cabe embaixo da manga. Certificação COSC e 70 horas de reserva de marcha.',
@@ -146,7 +161,11 @@ export const demoWatches: readonly Watch[] = [
     price: 4290000,
     previousPrice: 4690000,
     images: [
-      { url: '/catalogo/iwc-portugieser.jpg', alt: 'IWC Portugieser Chronograph com mostrador prateado e ponteiros azuis' },
+      { url: '/catalogo/iwc-portugieser.webp', alt: 'IWC Portugieser Chronograph em ouro rosé, com mostrador azul e pulseira de couro preta' },
+    ],
+    colors: [
+      { name: 'Azul', hex: '#1a2740' },
+      { name: 'Prateado', hex: '#d5d8dc' },
     ],
     shortDescription: 'Cronógrafo de mostrador limpo, com movimento de manufatura.',
     description:
@@ -154,7 +173,7 @@ export const demoWatches: readonly Watch[] = [
       'Mostrador prateado com ponteiros azulados e o calibre de manufatura 69355 visível pelo fundo.',
     specs: {
       movement: 'Automático, calibre 69355 de manufatura',
-      caseMaterial: 'Aço inoxidável',
+      caseMaterial: 'Ouro rosé 18k',
       caseSizeMm: 41,
       glass: 'Safira com tratamento antirreflexo',
       waterResistance: '30 metros',
@@ -175,13 +194,17 @@ export const demoWatches: readonly Watch[] = [
     availability: 'sob-encomenda',
     price: 4390000,
     images: [
-      { url: '/catalogo/grand-seiko-snowflake.jpg', alt: 'Grand Seiko Snowflake com mostrador texturizado branco' },
+      { url: '/catalogo/grand-seiko-snowflake.webp', alt: 'Grand Seiko Snowflake com mostrador texturizado em rosa claro e pulseira de titânio' },
+    ],
+    colors: [
+      { name: 'Rosa claro', hex: '#f3e0e1' },
+      { name: 'Branco neve', hex: '#eef1f4' },
     ],
     shortDescription: 'O mostrador de neve e o ponteiro que desliza sem tique-taque.',
     description:
       'O Snowflake é famoso por duas coisas: o mostrador que imita neve batida pelo vento ' +
       'e o Spring Drive, movimento em que o ponteiro dos segundos desliza contínuo, sem salto. ' +
-      'Caixa em titânio de alta intensidade — mais leve e mais resistente a risco que o aço.',
+      'Caixa em titânio de alta intensidade, mais leve e mais resistente a risco que o aço.',
     specs: {
       movement: 'Spring Drive, calibre 9R65',
       caseMaterial: 'Titânio de alta intensidade',
@@ -205,7 +228,11 @@ export const demoWatches: readonly Watch[] = [
     availability: 'pronta-entrega',
     price: 3890000,
     images: [
-      { url: '/catalogo/tag-heuer-carrera.jpg', alt: 'TAG Heuer Carrera Chronograph com mostrador preto e fundo transparente' },
+      { url: '/catalogo/tag-heuer-carrera.webp', alt: 'TAG Heuer Carrera Chronograph com mostrador azul, detalhes em laranja e pulseira de couro azul' },
+    ],
+    colors: [
+      { name: 'Azul', hex: '#1b4f8a' },
+      { name: 'Preto', hex: '#141414' },
     ],
     shortDescription: 'Cronógrafo de corrida com movimento de manufatura e 80h de reserva.',
     description:
@@ -217,7 +244,7 @@ export const demoWatches: readonly Watch[] = [
       caseSizeMm: 44,
       glass: 'Safira',
       waterResistance: '100 metros',
-      bracelet: 'Aço inoxidável',
+      bracelet: 'Couro azul',
     },
     hasBoxAndPapers: true,
     warrantyMonths: 24,
@@ -234,7 +261,11 @@ export const demoWatches: readonly Watch[] = [
     availability: 'pronta-entrega',
     price: 1490000,
     images: [
-      { url: '/catalogo/longines-master.jpg', alt: 'Longines Master Collection com mostrador prateado e pulseira de couro' },
+      { url: '/catalogo/longines-master.webp', alt: 'Longines Master Collection com mostrador prateado, ponteiros azulados e pulseira de couro azul' },
+    ],
+    colors: [
+      { name: 'Prateado', hex: '#d7dade' },
+      { name: 'Branco', hex: '#f2f4f6' },
     ],
     shortDescription: 'Entrada no automático suíço com acabamento de peça bem mais cara.',
     description:
@@ -246,7 +277,7 @@ export const demoWatches: readonly Watch[] = [
       caseSizeMm: 40,
       glass: 'Safira com antirreflexo',
       waterResistance: '30 metros',
-      bracelet: 'Couro de jacaré',
+      bracelet: 'Couro de jacaré azul',
     },
     hasBoxAndPapers: true,
     warrantyMonths: 60,

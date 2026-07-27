@@ -11,7 +11,7 @@ interface RevealProps {
 /**
  * Entrada sutil ao rolar: sobe alguns pixels e aparece. Nada além disso.
  *
- * Quem tem `prefers-reduced-motion` ativo recebe o conteúdo já posicionado —
+ * Quem tem `prefers-reduced-motion` ativo recebe o conteúdo já posicionado,
  * não uma versão degradada, a mesma coisa sem o deslocamento.
  */
 export function Reveal({ children, delay = 0, className }: RevealProps) {

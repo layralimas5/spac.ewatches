@@ -14,7 +14,7 @@ import { siteConfig } from '@/config/site.config'
  * Não é um placeholder inerte: é um fluxo de venda real, usado por boa parte do
  * varejo pequeno no Brasil. O checkout coleta tudo (itens, cliente, endereço,
  * frete, meio de pagamento), gera o código do pedido e manda o resumo completo
- * para a loja — o pagamento é combinado na conversa.
+ * para a loja, o pagamento é combinado na conversa.
  *
  * Assim a loja vende hoje, sem conta de gateway. Quando o Mercado Pago entrar,
  * é só criar `MercadoPagoGateway` com esta mesma interface e trocar a instância
@@ -61,7 +61,7 @@ function buildOrderMessage(
   const items = draft.items
     .map(
       (item) =>
-        `• ${item.quantity}x ${item.brand} ${item.name} (${item.sku}) — ${formatPrice(
+        `• ${item.quantity}x ${item.brand} ${item.name} (${item.sku}): ${formatPrice(
           item.unitPrice * item.quantity,
         )}`,
     )
@@ -71,7 +71,7 @@ function buildOrderMessage(
   const complement = address.complement !== undefined ? `, ${address.complement}` : ''
 
   const lines = [
-    `*Pedido ${orderCode}* — Space Watches`,
+    `*Pedido ${orderCode}* | Space Watches`,
     '',
     '*Itens*',
     items,
@@ -92,7 +92,7 @@ function buildOrderMessage(
     '',
     '*Entrega*',
     `${address.street}, ${address.number}${complement}`,
-    `${address.district} — ${address.city}/${address.state}`,
+    `${address.district}, ${address.city}/${address.state}`,
     `CEP ${formatPostalCode(address.postalCode)}`,
     `Prazo estimado: ${draft.shipping.estimatedDays} dias úteis`,
   ]

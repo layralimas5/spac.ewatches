@@ -1,7 +1,7 @@
 import { siteConfig } from '@/config/site.config'
 
 interface SeoProps {
-  /** Sem o nome da marca — ele é acrescentado aqui. */
+  /** Sem o nome da marca, ele é acrescentado aqui. */
   readonly title: string
   readonly description: string
   /** Caminho da página, começando com `/`. Vira canonical e og:url. */
@@ -16,7 +16,7 @@ interface SeoProps {
  * Metadados por página.
  *
  * O React 19 iça `<title>`, `<meta>` e `<link>` para o `<head>` sozinho, então
- * basta renderizar aqui — sem react-helmet e sem efeito manual no DOM.
+ * basta renderizar aqui, sem react-helmet e sem efeito manual no DOM.
  */
 export function Seo({
   title,
@@ -52,7 +52,7 @@ export function Seo({
       {structuredData !== undefined && (
         <script
           type="application/ld+json"
-          // JSON.stringify de dado próprio e tipado — não há entrada de usuário aqui.
+          // JSON.stringify de dado próprio e tipado, não há entrada de usuário aqui.
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       )}

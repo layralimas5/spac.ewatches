@@ -10,7 +10,7 @@ import { WhatsAppOrderGateway } from './payment/whatsapp-order-gateway'
  *   · frete      → `new MelhorEnvioShippingProvider(token)`
  *   · pagamento  → `new MercadoPagoGateway(publicKey)`
  *
- * Nenhuma página ou componente importa as classes concretas — todos dependem
+ * Nenhuma página ou componente importa as classes concretas, todos dependem
  * das interfaces em `domain/`.
  */
 export const shippingProvider: ShippingProvider = new TableShippingProvider()

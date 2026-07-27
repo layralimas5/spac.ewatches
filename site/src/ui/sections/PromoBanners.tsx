@@ -33,8 +33,8 @@ export function PromoBanners() {
               to={banner.to}
               className={
                 banner.tone === 'dark'
-                  ? 'group flex h-full flex-col justify-between rounded-lg bg-ink-950 p-8 text-cream transition-colors hover:bg-ink-900'
-                  : 'group flex h-full flex-col justify-between rounded-lg border border-paper-line bg-paper-alt p-8 text-ink-950 transition-colors hover:border-ink-950'
+                  ? 'group flex h-full flex-col justify-between rounded-lg bg-ink-950 p-6 text-cream transition-colors hover:bg-ink-900 sm:p-8'
+                  : 'group flex h-full flex-col justify-between rounded-lg border border-paper-line bg-paper-alt p-6 text-ink-950 transition-colors hover:border-ink-950 sm:p-8'
               }
             >
               <div>
@@ -45,7 +45,7 @@ export function PromoBanners() {
                 >
                   {banner.eyebrow}
                 </p>
-                <h2 className="mt-2 text-xl font-semibold sm:text-2xl">{banner.title}</h2>
+                <h2 className="mt-2 text-lg font-semibold sm:text-2xl">{banner.title}</h2>
                 <p
                   className={
                     banner.tone === 'dark'

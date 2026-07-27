@@ -27,7 +27,7 @@ interface StateMessageProps {
   readonly tone?: 'neutral' | 'error'
 }
 
-/** Estado vazio ou de erro — sempre com uma saída, nunca um beco sem ação. */
+/** Estado vazio ou de erro: sempre com uma saída, nunca um beco sem ação. */
 export function StateMessage({ title, description, action, tone = 'neutral' }: StateMessageProps) {
   return (
     <div

@@ -18,7 +18,7 @@ type State =
 /**
  * Cálculo de frete por CEP na página de produto.
  *
- * Consulta `shippingProvider` — hoje uma tabela por região, amanhã o Melhor
+ * Consulta `shippingProvider`, hoje uma tabela por região, amanhã o Melhor
  * Envio. O componente não sabe a diferença.
  */
 export function ShippingCalculator({ subtotal }: { readonly subtotal: PriceInCents }) {
@@ -65,12 +65,12 @@ export function ShippingCalculator({ subtotal }: { readonly subtotal: PriceInCen
           value={formatPostalCode(postalCode)}
           onChange={(event) => setPostalCode(normalizePostalCode(event.target.value))}
           placeholder="00000-000"
-          className="h-10 w-36 rounded-md border border-paper-line bg-paper px-3 text-sm text-ink-950 placeholder:text-ink-500/70 focus:border-ink-950"
+          className="h-11 w-full min-w-0 flex-1 rounded-md border border-paper-line bg-paper px-3 text-sm text-ink-950 placeholder:text-ink-500/70 focus:border-ink-950 sm:w-36 sm:flex-none"
         />
         <button
           type="submit"
           disabled={state.status === 'loading'}
-          className="h-10 rounded-md border border-ink-950 px-4 text-sm font-medium text-ink-950 transition-colors hover:bg-ink-950 hover:text-cream disabled:opacity-50"
+          className="h-11 shrink-0 rounded-md border border-ink-950 px-4 text-sm font-medium text-ink-950 transition-colors hover:bg-ink-950 hover:text-cream disabled:opacity-50"
         >
           {state.status === 'loading' ? 'Calculando…' : 'Calcular'}
         </button>

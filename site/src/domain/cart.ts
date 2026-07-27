@@ -3,7 +3,7 @@ import type { PriceInCents, Watch } from './watch'
 /**
  * Carrinho como valor imutável.
  *
- * Nenhuma função aqui altera o carrinho recebido — todas devolvem um novo.
+ * Nenhuma função aqui altera o carrinho recebido, todas devolvem um novo.
  * Isso mantém o histórico previsível e evita o bug clássico de dois
  * componentes mutando a mesma lista e discordando do total.
  */
